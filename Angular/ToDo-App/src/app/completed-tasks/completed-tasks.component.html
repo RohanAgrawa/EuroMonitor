@@ -1,0 +1,23 @@
+<div class = "col-xs-10" style="margin-top: 20px; margin-left: 120px">
+  <hr>
+  <div class="card">
+    <div class = "card-body">
+      <h3 style="color: forestgreen; margin-left: 450px">Completed Tasks</h3>
+    </div>
+  </div>
+  <hr>
+  <div  *ngFor="let task of tasks; let i = index" >
+    <div class = "list-group-item" *ngIf="task.isCompleted">
+      <div style="display: flex;" >
+        <div class="container">
+          <h4 class="list-group-item-text">{{task.taskName}}</h4>
+        </div>
+        <div style="margin-left: 900px; display: flex;">
+          <div style="margin-left: 10px">
+            <button class = "btn btn-danger" (click)="onDelete(i)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
