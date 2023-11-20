@@ -18,7 +18,7 @@ export class AddTaskComponent {
 
   onAddTask(){
     if(this.task.length > 0 && this.task.charAt(0) != " "){
-      data.todoItems.push(new TodoModel(this.task, data.todoItems.length));
+      data.todoItems.push(new TodoModel(this.task));
       console.log(sharedData.todoItems)
     }
 

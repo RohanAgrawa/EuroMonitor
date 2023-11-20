@@ -3,9 +3,8 @@ export class TodoModel{
   public isCompleted : boolean;
   public index : number;
 
-  constructor(taskName : string, index : number) {
+  constructor(taskName : string) {
     this.taskName = taskName;
     this.isCompleted = false;
-    this.index = index;
   }
 }
