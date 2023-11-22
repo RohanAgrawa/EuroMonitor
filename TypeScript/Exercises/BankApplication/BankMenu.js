@@ -1,11 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Bank_1 = __importDefault(require("./Bank"));
-const input_1 = require("../input");
-let bank = new Bank_1.default();
+var Bank_1 = require("./Bank");
+var input_1 = require("../input");
+var bank = new Bank_1.default();
 function displayMenu() {
     console.log();
     console.log("-------------------------------------------------------------------------------------------------------------");
@@ -15,11 +12,11 @@ function displayMenu() {
     console.log("4. Withdraw Money");
     console.log("5. Account Information");
     console.log("6. Exit Application");
-    input_1.r.question("Enter your choice :- ", (options) => {
+    input_1.r.question("Enter your choice :- ", function (options) {
         if (options == "1") {
             console.log("1. Saving");
             console.log("2. current");
-            input_1.r.question("Which type of account you want open (1 or 2)", (accountType) => {
+            input_1.r.question("Which type of account you want open (1 or 2)", function (accountType) {
                 if (accountType == "1") {
                     bank.createAccount("Saving");
                 }
