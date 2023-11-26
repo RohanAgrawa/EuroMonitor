@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TodoModel} from "./todo.model";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ToDo-App';
+  public todoItems : TodoModel[] = [];
+
+  onTaskAdd(event : {task : string}){
+    this.todoItems.push(new TodoModel(event.task));
+    console.log(this.todoItems);
+  }
 }

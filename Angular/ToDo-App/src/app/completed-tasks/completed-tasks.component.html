@@ -1,11 +1,4 @@
-<div class = "col-xs-10" style="margin-top: 20px; margin-left: 120px">
-  <hr>
-  <div class="card">
-    <div class = "card-body">
-      <h3 style="color: forestgreen; margin-left: 450px">Completed Tasks</h3>
-    </div>
-  </div>
-  <hr>
+
   <div  *ngFor="let task of tasks; let i = index" >
     <div class = "list-group-item" *ngIf="task.isCompleted">
       <div style="display: flex;" >
@@ -20,4 +13,4 @@
       </div>
     </div>
   </div>
-</div>
+

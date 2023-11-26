@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import sharedData from "../Shared/data";
+import {Component, Input} from '@angular/core';
 import {TodoModel} from "../todo.model";
 
 @Component({
@@ -8,8 +7,9 @@ import {TodoModel} from "../todo.model";
   styleUrl: './completed-tasks.component.css'
 })
 export class CompletedTasksComponent {
-  public tasks = sharedData.todoItems;
 
+
+  @Input() public tasks : TodoModel[];
   onDelete(position : number) : void{
 
     this.tasks.splice(position,1);

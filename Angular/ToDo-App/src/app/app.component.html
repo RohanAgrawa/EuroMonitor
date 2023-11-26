@@ -5,12 +5,22 @@
   <hr>
 </div>
 
-  <app-add-task></app-add-task>
+<div>
+  <app-add-task (taskAdded)="onTaskAdd($event)"></app-add-task>
+</div>
 
+<div>
+  <app-display-task [tasks]="todoItems"></app-display-task>
+</div>
 
-  <app-display-task></app-display-task>
-
-
-  <app-completed-tasks></app-completed-tasks>
-
+<div class = "col-xs-10" style="margin-top: 20px; margin-left: 120px">
+  <hr>
+  <div class="card">
+    <div class = "card-body">
+      <h3 style="color: forestgreen; margin-left: 450px">Completed Tasks</h3>
+    </div>
+  </div>
+  <hr>
+  <app-completed-tasks [tasks]="todoItems"></app-completed-tasks>
+</div>
 
