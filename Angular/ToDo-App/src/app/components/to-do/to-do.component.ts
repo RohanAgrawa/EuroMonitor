@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DataService} from "../../Services/data.service";
+import {DataService} from "../../services/data.service";
 import {TodoModel} from "../../models/todo.model";
 
 @Component({
@@ -15,7 +15,7 @@ export class ToDoComponent implements OnInit{
   constructor(private dataService : DataService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.tasks = this.dataService.getItems();
   }
 

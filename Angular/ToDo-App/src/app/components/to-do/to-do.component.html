@@ -3,7 +3,7 @@
     <div class = "form-inline">
       <div *ngIf="inputEL.invalid && (inputEL.dirty || inputEL.touched)" class="text-danger">
         <div *ngIf="inputEL.errors.required">Task is required.</div>
-        <div *ngIf="inputEL.errors.pattern">provide valid task not with leading spaces and numbers.</div>
+        <div *ngIf="inputEL.errors.pattern">provide valid task not with leading spaces and numbers & special characters.</div>
       </div>
       <div class = "form-group mx-sm-3 mb-2">
         <label for = "task" class="sr-only"> Enter Task</label>
