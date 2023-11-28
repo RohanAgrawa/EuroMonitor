@@ -1,4 +1,4 @@
-import {Movie} from "../app/movie/movie.model";
+import {Movie} from "../models/movie.model";
 import {EventEmitter} from "@angular/core";
 
 export class MovieService{
