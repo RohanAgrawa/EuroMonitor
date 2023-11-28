@@ -1,0 +1,60 @@
+<div class="container-fluid form" style="margin-left: 500px; margin-top: 20px">
+  <form id = "taskForm" (ngSubmit)="onAddTask()" #todoForm = "ngForm">
+    <div class = "form-inline">
+      <div *ngIf="inputEL.invalid && (inputEL.dirty || inputEL.touched)" class="text-danger">
+        <div *ngIf="inputEL.errors.required">Task is required.</div>
+        <div *ngIf="inputEL.errors.pattern">provide valid task not with leading spaces and numbers.</div>
+      </div>
+      <div class = "form-group mx-sm-3 mb-2">
+        <label for = "task" class="sr-only"> Enter Task</label>
+        <input type="text" id="task" name="task" class="form-control" placeholder="Enter task" [(ngModel)]="task"
+               required pattern="[A-Za-z]+" #inputEL = "ngModel">
+      </div>
+      <button type="submit" [disabled]="todoForm.invalid"  class="btn btn-primary mb-2" style="margin-left: 30px">Add Task</button>
+    </div>
+  </form>
+</div>
+
+<div class = "col-xs-10" style="margin-top: 20px; margin-left: 120px">
+  <div class = "list-group-item" *ngFor="let task of tasks; let i = index">
+    <div style="display: flex;">
+      <div class="container">
+        <h4 class="list-group-item-text">{{task.taskName}}</h4>
+      </div>
+      <div style="margin-left: 900px; display: flex;">
+        <div [ngStyle]="{visibility : getVisibility(task.isCompleted)}">
+          <button class = "btn btn-success" [disabled]="task.isCompleted" (click)="onComplete(i)">Complete</button>
+        </div>
+        <div style="margin-left: 10px">
+          <button class = "btn btn-danger" (click)="onDelete(i)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class = "col-xs-10" style="margin-top: 20px; margin-left: 120px">
+  <hr>
+  <div class="card">
+    <div class = "card-body">
+      <h3 style="color: forestgreen; margin-left: 450px">Completed Tasks</h3>
+    </div>
+  </div>
+  <hr>
+  <div  *ngFor="let task of tasks; let i = index" >
+    <div class = "list-group-item" *ngIf="task.isCompleted">
+      <div style="display: flex;" >
+        <div class="container">
+          <h4 class="list-group-item-text">{{task.taskName}}</h4>
+        </div>
+        <div style="margin-left: 900px; display: flex;">
+          <div style="margin-left: 10px">
+            <button class = "btn btn-danger" (click)="onDelete(i)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

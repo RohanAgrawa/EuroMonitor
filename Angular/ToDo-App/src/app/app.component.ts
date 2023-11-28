@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
-import {TodoModel} from "./todo.model";
+import {DataService} from "./Services/data.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers : [DataService]
 })
 export class AppComponent {
   title = 'ToDo-App';
-  public todoItems : TodoModel[] = [];
 
-  onTaskAdd(event : {task : string}){
-    this.todoItems.push(new TodoModel(event.task));
-    console.log(this.todoItems);
+  constructor(private dataService : DataService) {
   }
 }
