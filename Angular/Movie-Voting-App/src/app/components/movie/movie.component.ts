@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../../services/movie.service";
+
 import {Movie} from "../../models/movie.model";
+import {MovieService} from "../../services/movie.service";
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css',
-  providers : [MovieService]
 })
 
 export class MovieComponent implements OnInit{
@@ -16,7 +16,7 @@ export class MovieComponent implements OnInit{
 
   constructor(private movieService : MovieService) {
   }
-  ngOnInit() {
+  public ngOnInit() : void {
     this.movies = this.movieService.getMovies();
     this.movieService.changedMovies.subscribe(
       (movies : Movie[])=>{

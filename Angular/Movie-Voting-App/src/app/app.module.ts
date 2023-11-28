@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { MovieComponent } from './components/movie/movie.component';
+import {MovieService} from "./services/movie.service";
+import {MovieDataService} from "./services/movie-data.service";
+
 
 @NgModule({
   declarations: [
@@ -12,7 +15,7 @@ import { MovieComponent } from './components/movie/movie.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [MovieService, MovieDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
