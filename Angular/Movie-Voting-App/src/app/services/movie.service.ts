@@ -7,7 +7,6 @@ export class MovieService{
 
   private readonly movies : Movie[];
 
-  public changedMovies = new EventEmitter<Movie[]>();
 
   constructor(private movieData : MovieDataService) {
     this.movies = this.movieData.getMovieData();
@@ -18,6 +17,5 @@ export class MovieService{
 
   public updateVote(index : number){
     this.movies[index].isVoted = !this.movies[index].isVoted;
-    this.changedMovies.emit(this.movies);
   }
 }

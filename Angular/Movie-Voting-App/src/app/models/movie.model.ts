@@ -7,6 +7,4 @@ export class Movie{
     this.moviePosterUrl = moviePosterUrl;
     this.movieName = movieName;
   }
-
-
 }
