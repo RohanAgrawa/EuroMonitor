@@ -34,18 +34,39 @@ export class UserService{
     });
   }
 
-  public async getUsers(){
+  public async getUsers() : Promise<any>{
     const data = await fetch(this.userUrl);
     return await data.json() ?? [];
   }
 
-  public async getAdmins(){
+  public async getUser(id: number) : Promise<any>{
+    return (await fetch(`${this.userUrl}/${id}`)).json() ?? {};
+  }
+
+  public async getAdmins() : Promise<any>{
     const data = await fetch(this.adminUrl);
     return await data.json() ?? [];
   }
 
+  public async getAdmin(id: number): Promise<any>{
+    return (await fetch(`${this.adminUrl}/${id}`)).json() ?? {};
+  }
+
   public updateUser() {
     
+  }
+
+  public async updateAdmin(id: number, user: UserModel) : Promise<Response>{
+
+    const response = await fetch(`${this.adminUrl}/${id}`, { 
+      method: 'PUT', 
+      headers: { 
+        'Content-type': 'application/json'
+      }, 
+      body: JSON.stringify(user) 
+    });
+    
+    return response;
   }
 
   public deleteUser(userType : string, id : number) {

@@ -30,4 +30,8 @@ export class UserModel{
   public getUserId() : number{
     return this.id;
   }
+
+  public getUserPassword() : string{
+    return this.password;
+  }
 }
