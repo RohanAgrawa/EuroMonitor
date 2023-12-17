@@ -17,7 +17,7 @@
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
             <button mat-button [matMenuTriggerFor]="menu">User</button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'admin'}">Admin</button>
+                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'admin'}" routerLinkActive="activeButton">Admin</button>
                     <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Public users</button>
                 </mat-menu>
         </div>

@@ -1,0 +1,46 @@
+<div class="right-half">
+  <mat-card class = "userForm">
+    <mat-card-content>
+      <h2 style="text-align: center; color: darkgreen;">Update Admin!</h2>  
+    </mat-card-content>
+    <mat-card-content>
+      <form class = "example-form" (ngSubmit)="onUpdate()" #f = "ngForm">
+        <mat-form-field class = "example-full-width">
+          <mat-label>User Name</mat-label>
+          <input matInput placeholder="name" name="username" type="text" ngModel required #username = "ngModel">
+          <mat-error class = "error" *ngIf="!username.valid && username.touched">Requires name of User!</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class = "example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="text" matInput placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                 name="email" ngModel required email #email = "ngModel">
+          <mat-error class = "error" *ngIf="!email.valid && email.touched">Enter a Valid email</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class = "example-full-width">
+          <mat-label>Phone Number</mat-label>
+          <input type="tel"  name="mobile" matInput
+                 placeholder="phone number" ngModel required pattern="[0-9]{10}" #mobile = "ngModel">
+          <mat-error class = "error" *ngIf="!mobile.valid && mobile.touched">Enter a valid phone number! </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class = "example-full-width">
+          <mat-label>Password</mat-label>
+          <input type="password"  name="password" matInput
+                 placeholder="password" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$" #password = "ngModel">
+          <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!password.valid && password.touched">Enter password of 8 char with atleast one lower and uppercase and special character! </mat-error>
+        </mat-form-field>
+  
+        <div style=" margin-top: 9px; padding-top: 12px;">
+          <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Update Admin</button>
+          <button style="margin-left: 20px;" type="button" mat-raised-button color="warn" [routerLink]="['../../../']" [queryParams]="{userType : query}">Back</button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="responseError">
+      <h2 style="text-align: center;">Something went wrong...</h2>
+    </mat-card-content>
+  </mat-card>
+</div>

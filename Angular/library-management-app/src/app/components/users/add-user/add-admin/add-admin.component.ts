@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, NgForm} from "@angular/forms";
-import {UserModel} from "../../models/user.model";
-import {UserService} from "../../services/user.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserModel } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.css'
+  selector: 'app-add-admin',
+  templateUrl: './add-admin.component.html',
+  styleUrl: './add-admin.component.css'
 })
-export class AddUserComponent implements OnInit{
+export class AddAdminComponent implements OnInit{
 
   @ViewChild('f') public userForm: NgForm;
   public isSubmitted: boolean = false;
@@ -25,9 +25,9 @@ export class AddUserComponent implements OnInit{
   public onsubmit() : void{
 
     const user : UserModel = new UserModel(this.userForm.value.username,
-                                              this.userForm.value.mobile, this.userForm.value.email);
+                                              this.userForm.value.mobile, this.userForm.value.email, this.userForm.value.password);
 
-    const response : Promise<any> =  this.userService.addUser(user);
+    const response : Promise<any> =  this.userService.addAdmin(user);
 
     response.then((response :Response) => {
       if (response.ok) {
@@ -41,4 +41,5 @@ export class AddUserComponent implements OnInit{
       this.isSubmitted = true;
     });
   }
+
 }

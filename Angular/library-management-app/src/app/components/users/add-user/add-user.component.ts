@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormGroup, NgForm} from "@angular/forms";
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-admin',
-  templateUrl: './add-admin.component.html',
-  styleUrl: './add-admin.component.css'
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrl: './add-user.component.css'
 })
-export class AddAdminComponent implements OnInit{
+export class AddUserComponent implements OnInit{
 
   @ViewChild('f') public userForm: NgForm;
   public isSubmitted: boolean = false;
@@ -25,9 +25,9 @@ export class AddAdminComponent implements OnInit{
   public onsubmit() : void{
 
     const user : UserModel = new UserModel(this.userForm.value.username,
-                                              this.userForm.value.mobile, this.userForm.value.email, this.userForm.value.password);
+                                              this.userForm.value.mobile, this.userForm.value.email);
 
-    const response : Promise<any> =  this.userService.addAdmin(user);
+    const response : Promise<any> =  this.userService.addUser(user);
 
     response.then((response :Response) => {
       if (response.ok) {
@@ -41,5 +41,4 @@ export class AddAdminComponent implements OnInit{
       this.isSubmitted = true;
     });
   }
-
 }
