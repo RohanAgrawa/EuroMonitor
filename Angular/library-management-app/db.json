@@ -1,0 +1,89 @@
+{
+  "users": [
+    {
+      "phone_no": "6266356565",
+      "name": "test1",
+      "email": "test1@gmail.com",
+      "id": 1
+    },
+    {
+      "phone_no": "5656555454",
+      "name": "rohan",
+      "email": "rohan@gmail.com",
+      "id": 2
+    },
+    {
+      "phone_no": "7894564212",
+      "name": "test",
+      "email": "test@gmail.com",
+      "id": 3
+    },
+    {
+      "phone_no": "5465478971",
+      "name": "sk",
+      "email": "sk@gmail.com",
+      "id": 4
+    },
+    {
+      "phone_no": "5445454545",
+      "name": "somil",
+      "email": "somil@gmail.com",
+      "id": 5
+    },
+    {
+      "phone_no": "1231545645",
+      "name": "Rah",
+      "email": "test2@gmail.com",
+      "id": 6
+    },
+    {
+      "phone_no": "1234564871",
+      "name": "Test4",
+      "email": "test4@gmail.com",
+      "id": 7
+    },
+    {
+      "phone_no": "1234567897",
+      "name": "Rohan",
+      "email": "test@gmail.com",
+      "id": 8
+    },
+    {
+      "phone_no": "4548787845",
+      "name": "sanskar",
+      "email": "sanskar@gmail.com",
+      "id": 9
+    },
+    {
+      "phone_no": "4546784512",
+      "name": "testing",
+      "email": "testing@gmail.com",
+      "id": 10
+    },
+    {
+      "phone_no": "8978745412",
+      "name": "testing1",
+      "email": "testing1@gmail.com",
+      "id": 11
+    },
+    {
+      "phone_no": "7874521212",
+      "name": "testing2",
+      "email": "testing2@gmail.com",
+      "id": 12
+    },
+    {
+      "phone_no": "8979844542",
+      "name": "test5",
+      "email": "test5@gmail.com",
+      "id": 13
+    },
+    {
+      "phone_no": "8797845641",
+      "name": "test7",
+      "email": "test7@gmail.com",
+      "id": 14
+    }
+  ],
+  "adminUsers": []
+}

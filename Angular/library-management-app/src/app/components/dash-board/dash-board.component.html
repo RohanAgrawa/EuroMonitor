@@ -1,0 +1,26 @@
+<div class = "dash-board">
+    <mat-toolbar>
+      <div class = "navigation">
+        <div>
+            <button mat-button>Books</button>
+        </div>
+        <div style="margin-left: 70px;">
+            <button mat-button>Add Book</button>
+        </div>
+        <div style="margin-left: 70px;" routerLinkActive="activeButton">
+            <button mat-button [matMenuTriggerFor]="addMenu">Add User</button>
+                <mat-menu #addMenu="matMenu">
+                    <button mat-menu-item [routerLink]="['add-user', 'admin']">Admin</button>
+                    <button mat-menu-item [routerLink]="['add-user', 'public']" routerLinkActive="activeButton">Public user</button>
+                </mat-menu>
+        </div>
+        <div style="margin-left: 70px;" routerLinkActive="activeButton">
+            <button mat-button [matMenuTriggerFor]="menu">User</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'admin'}">Admin</button>
+                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Public users</button>
+                </mat-menu>
+        </div>
+    </div>
+    </mat-toolbar>
+</div>
