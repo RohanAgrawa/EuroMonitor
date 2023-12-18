@@ -34,63 +34,71 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function fetchUsers() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, users, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('https://reqres.in/api/users')];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    users = _a.sent();
-                    return [2 /*return*/, users.data];
-                case 3:
-                    error_1 = _a.sent();
-                    console.error('Error fetching users:', error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+var Api = /** @class */ (function () {
+    function Api() {
+    }
+    Api.prototype.fetchUsers = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, users, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, fetch('https://reqres.in/api/users')];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2:
+                        users = _a.sent();
+                        return [2 /*return*/, users.data];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.error('Error fetching users:', error_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    });
-}
+    };
+    Api.prototype.getUserById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, root, users, div, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, fetch("https://reqres.in/api/users/".concat(id))];
+                    case 1:
+                        response = _a.sent();
+                        root = document.getElementById("root");
+                        root.textContent = '';
+                        return [4 /*yield*/, response.json()];
+                    case 2:
+                        users = _a.sent();
+                        div = document.createElement("div");
+                        div.innerHTML = "<img src='".concat(users.data.avatar, "'/>\n            <h4 style = \"text-align:center;\">").concat(users.data.first_name, "</h4>\n            <p>").concat(users.data.email, "</p>");
+                        root === null || root === void 0 ? void 0 : root.appendChild(div);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_2 = _a.sent();
+                        console.error('Error fetching users:', error_2);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return Api;
+}());
+var api = new Api();
 var apps = document.getElementById("root");
-var usersDetails = fetchUsers();
+var usersDetails = api.fetchUsers();
 usersDetails.then(function (data) {
     data.forEach(function (element) {
         var div = document.createElement("div");
-        div.innerHTML = "<img src='".concat(element.avatar, "' onClick = \"getUserById(").concat(element.id, ")\"/>\n            <h4 style = \"text-align:center;\">").concat(element.first_name, "</h4>\n            <p>").concat(element.email, "</p>");
+        div.innerHTML = "<img src='".concat(element.avatar, "' onClick = \"api.getUserById(").concat(element.id, ")\"/>\n        <h4 style = \"text-align:center;\">").concat(element.first_name, "</h4>\n        <p>").concat(element.email, "</p>");
         apps === null || apps === void 0 ? void 0 : apps.appendChild(div);
     });
+}).catch(function (err) {
+    console.error(err);
 });
-function getUserById(id) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, root, users, div, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch("https://reqres.in/api/users/".concat(id))];
-                case 1:
-                    response = _a.sent();
-                    root = document.getElementById("root");
-                    root.textContent = '';
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    users = _a.sent();
-                    div = document.createElement("div");
-                    div.innerHTML = "<img src='".concat(users.data.avatar, "'/>\n       <h4 style = \"text-align:center;\">").concat(users.data.first_name, "</h4>\n       <p>").concat(users.data.email, "</p>");
-                    root === null || root === void 0 ? void 0 : root.appendChild(div);
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _a.sent();
-                    console.error('Error fetching users:', error_2);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    });
-}

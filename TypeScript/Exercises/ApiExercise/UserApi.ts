@@ -46,10 +46,12 @@ usersDetails.then((data) => {
     data.forEach((element: any) => {
         const div = document.createElement("div");
            
-        div.innerHTML = `<img src='${element.avatar}' onClick = "getUserById(${element.id})"/>
+        div.innerHTML = `<img src='${element.avatar}' onClick = "api.getUserById(${element.id})"/>
         <h4 style = "text-align:center;">${element.first_name}</h4>
         <p>${element.email}</p>`;
             
         apps?.appendChild(div);
     });
+}).catch((err) => {
+    console.error(err);
 });
