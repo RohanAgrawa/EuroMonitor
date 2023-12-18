@@ -52,8 +52,16 @@ export class UserService{
     return (await fetch(`${this.adminUrl}/${id}`)).json() ?? {};
   }
 
-  public updateUser() {
+  public async updateUser(id : number, user : UserModel) {
+    const response = await fetch(`${this.userUrl}/${id}`, { 
+      method: 'PUT', 
+      headers: { 
+        'Content-type': 'application/json'
+      }, 
+      body: JSON.stringify(user) 
+    });
     
+    return response;
   }
 
   public async updateAdmin(id: number, user: UserModel) : Promise<Response>{
@@ -69,25 +77,25 @@ export class UserService{
     return response;
   }
 
-  public deleteUser(userType : string, id : number) {
-    if (userType === 'admin') {
-      const response = fetch(`${this.adminUrl}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response;
-    }
-    else {
-      const response = fetch(`${this.userUrl}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response;
-    }
+  public deleteUser(id : number) : Promise<Response>{
+    
+    const response = fetch(`${this.userUrl}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response;
+  }
+
+  public deleteAdmin(id: number) : Promise<Response>{
+    const response = fetch(`${this.adminUrl}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response;
   }
 
 }

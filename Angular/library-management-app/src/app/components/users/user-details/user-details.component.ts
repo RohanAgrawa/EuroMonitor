@@ -37,10 +37,7 @@ export class UserDetailsComponent implements OnInit{
 
     this.route.queryParams.subscribe(params => {
       this.userType = params['userType'];
-      if(this.userType == 'admin' || this.userType == 'adminUpdated')
-        this.getAdimnUsers();
-      else
-        this.getUsers();
+        this.checkUserType();
     });
     
   }
@@ -61,14 +58,36 @@ export class UserDetailsComponent implements OnInit{
     });
   }
 
+  private checkUserType(): void {
+    if(this.userType == 'admin' || this.userType == 'adminUpdated')
+        this.getAdimnUsers();
+      else
+        this.getUsers();
+  }
+
   public onDelete(user: any): void{
  
-    this.userService.deleteUser(this.userType, user.id).then((response) => {
+    if (this.userType == 'admin' || this.userType == 'adminUpdated')
+      this.deleteAdmin(user);
+    else
+      this.deleteUser(user);
+  }
+
+  private deleteAdmin(user: any): void {
+    this.userService.deleteAdmin(user.id).then((response) => {
       if (response.ok) {
-        if(this.userType == 'admin')
-          this.getAdimnUsers();
-        else
-          this.getUsers();
+        this.checkUserType();
+      }
+      else {
+        console.log('Error deleting admin');
+      }
+    });
+  }
+
+  private deleteUser(user: any): void {
+    this.userService.deleteUser(user.id).then((response) => {
+      if (response.ok) {
+        this.checkUserType();
       }
       else {
         console.log('Error deleting user');

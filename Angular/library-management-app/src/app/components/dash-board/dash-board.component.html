@@ -5,7 +5,7 @@
             <button mat-button>Books</button>
         </div>
         <div style="margin-left: 70px;">
-            <button mat-button>Add Book</button>
+            <button mat-button [routerLink]="['create-book']">Add Book</button>
         </div>
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
             <button mat-button [matMenuTriggerFor]="addMenu">Add User</button>

@@ -24,8 +24,8 @@ export class AddUserComponent implements OnInit{
 
   public onsubmit() : void{
 
-    const user : UserModel = new UserModel(this.userForm.value.username,
-                                              this.userForm.value.mobile, this.userForm.value.email);
+    const user : UserModel = new UserModel(this.userForm.value.username.toUpperCase(),
+                                              this.userForm.value.mobile, this.userForm.value.email.toUpperCase());
 
     const response : Promise<any> =  this.userService.addUser(user);
 

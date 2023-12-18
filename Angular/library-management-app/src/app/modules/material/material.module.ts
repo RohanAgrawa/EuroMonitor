@@ -7,7 +7,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 const MaterialComponent = [
@@ -20,7 +22,8 @@ const MaterialComponent = [
   MatTableModule,
   MatInputModule,
   MatMenuModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSelectModule
 ]
 
 

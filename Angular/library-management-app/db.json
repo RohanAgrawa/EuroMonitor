@@ -2,25 +2,18 @@
   "users": [
     {
       "phone_no": "1234567891",
-      "name": "Test",
-      "email": "test@gmail.com",
+      "name": "ROHAN",
+      "email": "ROHAN@GMAIL.COM",
       "id": 1
     }
   ],
   "adminUsers": [
     {
       "phone_no": "1234567891",
-      "name": "admin",
-      "email": "admin@gmail.com",
+      "name": "ADMIN",
+      "email": "ADMIN@GMAIL.COM",
       "password": "12345Aa*",
       "id": 1
-    },
-    {
-      "phone_no": "2345678156",
-      "name": "admin1",
-      "email": "admin2@gmail.com",
-      "password": "12345Aa*",
-      "id": 2
     }
   ]
 }

@@ -12,6 +12,7 @@ import { UserDetailsComponent } from './components/users/user-details/user-detai
 import { AddAdminComponent } from './components/users/add-user/add-admin/add-admin.component';
 import { UpdateUserComponent } from './components/users/update-user/update-user.component';
 import { UpdateAdminUserComponent } from './components/users/update-user/update-admin-user/update-admin-user.component';
+import { CreateBookCatlogComponent } from './components/books/create-book-catlog/create-book-catlog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UpdateAdminUserComponent } from './components/users/update-user/update-
     UserDetailsComponent,
     AddAdminComponent,
     UpdateUserComponent,
-    UpdateAdminUserComponent
+    UpdateAdminUserComponent,
+    CreateBookCatlogComponent
   ],
   imports: [
     BrowserModule,

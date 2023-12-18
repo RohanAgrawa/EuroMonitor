@@ -5,6 +5,7 @@ import { UserDetailsComponent } from '../../components/users/user-details/user-d
 import { AddAdminComponent } from '../../components/users/add-user/add-admin/add-admin.component';
 import { UpdateUserComponent } from '../../components/users/update-user/update-user.component';
 import { UpdateAdminUserComponent } from '../../components/users/update-user/update-admin-user/update-admin-user.component';
+import { CreateBookCatlogComponent } from '../../components/books/create-book-catlog/create-book-catlog.component';
 
 const appRoutes: Routes = [
   { path: 'add-user/public', component: AddUserComponent, title: 'Add User' },
@@ -13,7 +14,9 @@ const appRoutes: Routes = [
     path: 'users', component: UserDetailsComponent, title: 'User Details', children: [
       { path: ':id/update', component: UpdateUserComponent, title: 'Update User' },
       {path : ':id/update/admin', component : UpdateAdminUserComponent, title : 'Update Admin'}
-  ]}
+    ]
+  },
+  {path : 'create-book', component : CreateBookCatlogComponent, title : 'Create Book'}
 ]
 
 @NgModule({

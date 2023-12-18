@@ -2,7 +2,7 @@
     <mat-card class = "userForm">
         <h2 style="text-align: center;">Update User!</h2>
         <mat-card-content>
-          <form class = "example-form" (ngSubmit)="onsubmit()" #f = "ngForm">
+          <form class = "example-form" (ngSubmit)="onUpdate()" #f = "ngForm">
             <mat-form-field class = "example-full-width">
               <mat-label>User Name</mat-label>
               <input matInput placeholder="name" name="username" type="text" ngModel required #username = "ngModel">
@@ -28,6 +28,10 @@
               <button style="margin-left: 20px;" type="button" mat-raised-button color="warn" [routerLink]="['../../']" [queryParams]="{userType : query}">Back</button>
             </div>
           </form>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="responseError">
+          <h2 style="text-align: center;">Something went wrong...</h2>
         </mat-card-content>
       </mat-card>
 </div>
