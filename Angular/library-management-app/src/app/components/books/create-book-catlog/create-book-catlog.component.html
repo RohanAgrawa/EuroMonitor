@@ -31,10 +31,9 @@
           <mat-form-field class="example-full-width">
             <mat-label>Genre</mat-label>
             <mat-select name="genre" required [(ngModel)] = "selectedGenre" #selectedGenreModel="ngModel">
-              <mat-option value="ficton">Fiction</mat-option>
-              <mat-option value="novel">Novel</mat-option>
+              <mat-option *ngFor="let item of genres" value = {{item.value}}>{{item.genre}}</mat-option>
             </mat-select>
-            <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!selectedGenreModel.valid &&selectedGenreModel.touched">Enter a valid 13 digit ISBN Number!</mat-error>
+            <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!selectedGenreModel.valid &&selectedGenreModel.touched">Please select a valid Genres!</mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Description</mat-label>
@@ -52,7 +51,7 @@
       <mat-card class="response">
         <mat-card-content *ngIf="!isSubmittedError">
           <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Book Created successfully!</h2>
-          <p>Id : {{userResponse.id}}</p>
+          <p>Id : {{bookResponse.id}}</p>
         </mat-card-content>
         <mat-card-content *ngIf="isSubmittedError">
           <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>

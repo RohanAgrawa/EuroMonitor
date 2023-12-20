@@ -5,6 +5,12 @@
       "name": "ROHAN",
       "email": "ROHAN@GMAIL.COM",
       "id": 1
+    },
+    {
+      "phone_no": "1234578941",
+      "name": "SANSKAR",
+      "email": "SANSKAR@GMAIL.COM",
+      "id": 2
     }
   ],
   "adminUsers": [
@@ -15,5 +21,35 @@
       "password": "12345Aa*",
       "id": 1
     }
-  ]
+  ],
+  "books": [
+    {
+      "title": "HAPPY",
+      "author": "ROHAN",
+      "description": "HAPPY WORLD!",
+      "genre": "NOVEL",
+      "publicationYear": "2020",
+      "isbn": "978-93-560-6066-3",
+      "id": 1
+    },
+    {
+      "title": "LIE",
+      "author": "RAJ",
+      "description": "HELLO",
+      "genre": "NOVEL",
+      "publicationYear": "2018",
+      "isbn": "978-93-560-6066-2",
+      "id": 2
+    },
+    {
+      "title": "LAZY",
+      "author": "ROHAN",
+      "description": "LIFE IS LAZY",
+      "genre": "FICTION",
+      "publicationYear": "2017",
+      "isbn": "978-93-560-6066-4",
+      "id": 3
+    }
+  ],
+  "borrow": []
 }

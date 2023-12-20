@@ -2,15 +2,15 @@
     <mat-toolbar>
       <div class = "navigation">
         <div>
-            <button mat-button>Books</button>
+            <button mat-button [routerLink]="['books']" routerLinkActive="activeButton">Books</button>
         </div>
         <div style="margin-left: 70px;">
-            <button mat-button [routerLink]="['create-book']">Add Book</button>
+            <button mat-button [routerLink]="['create-book']" routerLinkActive="activeButton">Create Book</button>
         </div>
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
             <button mat-button [matMenuTriggerFor]="addMenu">Add User</button>
                 <mat-menu #addMenu="matMenu">
-                    <button mat-menu-item [routerLink]="['add-user', 'admin']">Admin</button>
+                    <button mat-menu-item [routerLink]="['add-user', 'admin']" routerLinkActive="activeButton">Admin</button>
                     <button mat-menu-item [routerLink]="['add-user', 'public']" routerLinkActive="activeButton">Public user</button>
                 </mat-menu>
         </div>
@@ -20,6 +20,18 @@
                     <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'admin'}" routerLinkActive="activeButton">Admin</button>
                     <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Public users</button>
                 </mat-menu>
+        </div>
+
+        <div style="margin-left: 70px;">
+            <button mat-button [routerLink]="['issue-book']" routerLinkActive="activeButton">Issue Book</button>
+        </div>
+
+        <div style="margin-left: 70px;">
+            <button mat-button [routerLink]="['return-book']" routerLinkActive="activeButton">Return Book</button>
+        </div>
+
+        <div style="margin-left: 70px;">
+            <button mat-button [routerLink]="['issued-books']" routerLinkActive="activeButton">Issued Books</button>
         </div>
     </div>
     </mat-toolbar>

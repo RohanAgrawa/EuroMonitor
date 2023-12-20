@@ -1,0 +1,53 @@
+<div class = "container">
+    <h3>Issue Book</h3>
+    <mat-card class = "issueBookForm">
+      <mat-card-content>
+        <form class = "example-form" (ngSubmit)="onIssueBook()" #f = "ngForm">
+          <mat-form-field class = "example-full-width">
+            <mat-label>User Id</mat-label>
+            <input matInput placeholder="User Id" name="userId" type="number" min="1" ngModel required #userId = "ngModel">
+            <mat-error class = "error" *ngIf="!userId.valid && userId.touched">Requires Id of User!</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class = "example-full-width">
+            <mat-label>Book Id</mat-label>
+            <input type="number" matInput placeholder="Book Id" name="bookId" min="1" ngModel required  #bookId = "ngModel">
+            <mat-error class = "error" *ngIf="!bookId.valid && bookId.touched">Requires Book Id!</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class = "example-full-width">
+            <mat-label>Issue date</mat-label>
+            <input name="issueDate" matInput [matDatepicker]="issue" required [ngModel] = 'issueDate' #issueDate = "ngModel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="issue"></mat-datepicker-toggle>
+             <mat-datepicker #issue></mat-datepicker>
+            <mat-error class = "error" *ngIf="!issueDate.valid && issueDate.touched">Requires the Issue Date!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class = "example-full-width">
+            <mat-label>Return date</mat-label>
+            <input name="returnDate" matInput [matDatepicker]="return" required [ngModel] = 'returnDate' #returnDate = "ngModel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="return"></mat-datepicker-toggle>
+             <mat-datepicker #return></mat-datepicker>
+            <mat-error class = "error" *ngIf="!returnDate.valid && returnDate.touched">Requires the Return Date!</mat-error>
+          </mat-form-field>
+  
+          <div style=" margin-top: 7px">
+            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Issue Book</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <div style="margin-top: 10px;" *ngIf="isSubmitted">
+      <mat-card class="response">
+        <mat-card-content *ngIf="!isSubmittedError">
+          <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Book borrowed successfully!</h2>
+          <p>Id : {{bookResponse.id}}</p>
+        </mat-card-content>
+        <mat-card-content *ngIf="isSubmittedError">
+          <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

@@ -1,0 +1,53 @@
+<div class="right-half">
+    <mat-card class = "bookCatlogForm">
+        <mat-card-content>
+            <h2 style="text-align: center; color: darkgreen;">Update Book!</h2>  
+          </mat-card-content>
+        <mat-card-content>
+          <form class = "example-form" (ngSubmit)="onUpdate()" #f = "ngForm">
+            <mat-form-field class = "example-full-width">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Book Title" name="title" type="text" ngModel required #title = "ngModel">
+              <mat-error class = "error" *ngIf="!title.valid && title.touched">Requires Title of Book!</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class = "example-full-width">
+              <mat-label>Author</mat-label>
+              <input type="text" matInput placeholder="Author" name="author" ngModel required #author = "ngModel">
+              <mat-error class = "error" *ngIf="!author.valid && author.touched">Requires Author of Book!</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class = "example-full-width">
+              <mat-label>Publication Year</mat-label>
+              <input type="text"  name="year" matInput placeholder="Publication Year" ngModel required pattern="\d{4}" #year = "ngModel">
+              <mat-error class = "error" *ngIf="!year.valid && year.touched">Enter a valid four digit Year!</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class = "example-full-width">
+              <mat-label>ISBN</mat-label>
+              <input type="text"  name="isbn" matInput
+                     placeholder="ISBN" ngModel required pattern="\d{3}-\d{1,5}-\d{1,7}-\d{1,7}-\d{1,7}" #isbn = "ngModel">
+              <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!isbn.valid && isbn.touched">Enter a valid 13 digit ISBN Number!</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="example-full-width">
+              <mat-label>Genre</mat-label>
+              <mat-select name="genre" required [ngModel] = "selectedGenre" #selectedGenreModel="ngModel">
+                <mat-option *ngFor="let item of genres" value = {{item.value}}>{{item.genre}}</mat-option>
+              </mat-select>
+              <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!selectedGenreModel.valid &&selectedGenreModel.touched">Please select a valid Genres!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <textarea matInput name="description" type="text" required [(ngModel)] = "bookDescription" #description = "ngModel"></textarea>
+              <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!description.valid && description.touched">Requires a book Description!</mat-error>
+            </mat-form-field>
+    
+            <div style=" margin-top: 9px; padding-top: 12px;">
+              <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Update Book</button>
+              <button style="margin-left: 20px;" type="button" mat-raised-button color="warn" [routerLink]="['../../']">Back</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card> 
+</div>

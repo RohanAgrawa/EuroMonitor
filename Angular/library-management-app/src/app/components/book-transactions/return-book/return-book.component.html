@@ -1,0 +1,40 @@
+<div class = "container">
+    <h3>Issue Book</h3>
+    <mat-card class = "bookReturnForm">
+      <mat-card-content>
+        <form class = "example-form" (ngSubmit)="onReturnBook()" #f = "ngForm">
+
+          <mat-form-field class = "example-full-width">
+            <mat-label>Borrowed Id</mat-label>
+            <input matInput placeholder="borrowed Id" name="borrowId" type="number" min="1" ngModel required #borrowedId = "ngModel">
+            <mat-error class = "error" *ngIf="!borrowedId.valid && borrowedId.touched">Requires Borrowed Id!</mat-error>
+          </mat-form-field>  
+          <mat-form-field class = "example-full-width">
+            <mat-label>User Id</mat-label>
+            <input matInput placeholder="User Id" name="userId" type="number" min="1" ngModel required #userId = "ngModel">
+            <mat-error class = "error" *ngIf="!userId.valid && userId.touched">Requires Id of User!</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class = "example-full-width">
+            <mat-label>Book Id</mat-label>
+            <input type="number" matInput placeholder="Book Id" name="bookId" min="1" ngModel required  #bookId = "ngModel">
+            <mat-error class = "error" *ngIf="!bookId.valid && bookId.touched">Requires Book Id!</mat-error>
+          </mat-form-field>
+  
+          <div style=" margin-top: 7px">
+            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Return Book</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <div style="margin-top: 10px;" *ngIf="isSubmitted">
+      <mat-card class="response">
+        <mat-card-content *ngIf="!isSubmittedError">
+          <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Book Returned successfully!</h2>
+        </mat-card-content>
+        <mat-card-content *ngIf="isSubmittedError">
+          <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

@@ -35,12 +35,20 @@ export class UserService{
   }
 
   public async getUsers() : Promise<any>{
-    const data = await fetch(this.userUrl);
-    return await data.json() ?? [];
+    const response = await fetch(this.userUrl);
+    if(response.ok)
+      return await response.json() ?? [];
+    else
+      return null;
   }
 
   public async getUser(id: number) : Promise<any>{
-    return (await fetch(`${this.userUrl}/${id}`)).json() ?? {};
+    const response = (await fetch(`${this.userUrl}/${id}`));
+
+    if (response.ok)
+      return response.json() ?? {};
+    else
+      return null;
   }
 
   public async getAdmins() : Promise<any>{
