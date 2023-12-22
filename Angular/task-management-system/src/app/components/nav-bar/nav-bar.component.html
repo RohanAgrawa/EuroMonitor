@@ -1,0 +1,8 @@
+<div >
+    <mat-toolbar>
+      <span class="center-text">Library Management System</span>
+      <span class="spacer"></span>
+      <button *ngIf= '!isLoggedIn' mat-button [routerLink]="['login']" routerLinkActive="active">Log In</button>
+      <button *ngIf='isLoggedIn' (click)="onLogout()" mat-button>Log out</button>
+    </mat-toolbar>
+  </div>

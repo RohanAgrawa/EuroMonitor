@@ -1,0 +1,54 @@
+<div class = "container">
+    <h3>Add Task Form</h3>
+    <mat-card class = "taskForm">
+      <mat-card-content>
+        <form class = "example-form" (ngSubmit)="onAddTask()" #f = 'ngForm'>
+          <mat-form-field class = "example-full-width">
+            <mat-label>Task Title</mat-label>
+            <input matInput placeholder="Title" name="title" type="text" ngModel required #title = "ngModel">
+            <mat-error class = "error" *ngIf="!title.valid && title.touched">Requires Title of Task!</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Completion Status</mat-label>
+            <mat-select name="status" required [(ngModel)] = "selectedStatus" #selectedStatusModel="ngModel">
+              <mat-option *ngFor="let status of completionStatus" value = {{status.value}}>{{status.completionStatus}}</mat-option>
+            </mat-select>
+            <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!selectedStatusModel.valid && selectedStatusModel.touched">Please select a valid completion status!</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Task Category</mat-label>
+            <mat-select name="category" required [(ngModel)] = "selectedCategory" #selectedCategoryModel="ngModel">
+              <mat-option *ngFor="let category of categories" value = {{category.value}}>{{category.key}}</mat-option>
+            </mat-select>
+            <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!selectedCategoryModel.valid && selectedCategoryModel.touched">Please select a valid Task Category!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class = "example-full-width">
+            <mat-label>Due Date</mat-label>
+            <input name="dueDate" matInput [matDatepicker]="endDate" required [ngModel] = 'dueDate' #dueDate = "ngModel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+             <mat-datepicker #endDate></mat-datepicker>
+            <mat-error class = "error" *ngIf="!dueDate.valid && dueDate.touched">Requires the Due Date of Task!</mat-error>
+          </mat-form-field>
+  
+          <div style=" margin-top: 9px; padding-top: 12px;">
+            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Add Task</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <div style="margin-top: 10px;" *ngIf="isSubmitted">
+      <mat-card class="response">
+        <mat-card-content *ngIf="!isSubmittedError">
+          <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Task added successfully!</h2>
+        </mat-card-content>
+        <mat-card-content *ngIf="isSubmittedError">
+          <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
