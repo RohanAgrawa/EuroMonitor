@@ -1,2 +1,17 @@
-<p>dash-board works!</p>
-<router-outlet></router-outlet>
+<div class = "dash-board">
+    <mat-toolbar>
+      <div class = "navigation">
+        <div>
+            <button mat-button [routerLink]="['tasks']" routerLinkActive="activeButton">Tasks</button>
+        </div>
+        <div style="margin-left: 70px;">
+            <button mat-button [routerLink]="['add-task']" routerLinkActive="activeButton">Add Tasks</button>
+        </div>
+
+
+        <div style="margin-left: 70px;">
+            <button mat-button [routerLink]="['issue-book']" routerLinkActive="activeButton">update task</button>
+        </div>
+    </div>
+    </mat-toolbar>
+</div><router-outlet></router-outlet>

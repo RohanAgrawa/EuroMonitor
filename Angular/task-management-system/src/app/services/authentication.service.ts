@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { UserResponseModel } from '../models/user-response.model';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthenticationService {
   private url: string = 'http://localhost:3000/login';
 
   public user  : BehaviorSubject<UserResponseModel> = new BehaviorSubject<UserResponseModel>(null);
+  private tokenExpirationTimer: any;
 
   constructor(private routes  : Router) { }
 
@@ -32,12 +34,16 @@ export class AuthenticationService {
       if (res.ok) {
         const userResp = res.json();
         userResp.then((resp) => {
-          const userResponse = new UserResponseModel(resp.user.id, resp.user.name, resp.user.email, resp.accessToken);
+          const jwtToken = jwtDecode(resp.accessToken);
+          const expirationTime = jwtToken.exp * 1000;
+          const userResponse = new UserResponseModel(resp.user.id, resp.user.name, resp.user.email, resp.accessToken, new Date(expirationTime));
           this.user.next(userResponse);
           localStorage.setItem('userData', JSON.stringify(userResponse));
+          this.autoLogout(expirationTime - new Date().getTime());
         })
       }
     });
+
   }
 
   public autoLogin(): void {
@@ -46,10 +52,12 @@ export class AuthenticationService {
       return;
     }
 
-    const loadedUser = new UserResponseModel(userData.id, userData.name, userData.email, userData.token);
+    const loadedUser = new UserResponseModel(userData.id, userData.name, userData.email, userData.token, new Date(userData.tokenExpirationDate));
 
     if (loadedUser) {
       this.user.next(loadedUser);
+      const expirationDuration = loadedUser.tokenExpirationDate.getTime() - new Date().getTime();
+      this.autoLogout(expirationDuration);
     }
   }
 
@@ -57,6 +65,16 @@ export class AuthenticationService {
     this.user.next(null);
     this.routes.navigate(['/login']);
     localStorage.removeItem('userData');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  private autoLogout(expirationDuration: number): void {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
   }
 
 }

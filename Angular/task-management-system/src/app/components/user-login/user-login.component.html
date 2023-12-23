@@ -1,7 +1,4 @@
-<div class = "container">
-
-    <h3 *ngIf="isSubmitted && error">{{error}}</h3>
-    
+<div class = "container">    
     <mat-card class = "userForm">
       <mat-card-content>
         <form class = "example-form" (ngSubmit)="onLogin()" #f = "ngForm">
@@ -27,6 +24,7 @@
         </form>
       </mat-card-content>
     </mat-card>
+    <h3 *ngIf="isSubmitted && error">{{error}}</h3>
 
   </div>
 

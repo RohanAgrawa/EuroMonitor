@@ -18,38 +18,5 @@
       "id": 3
     }
   ],
-  "tasks": [
-    {
-      "title": "Cleaning home",
-      "completionStatus": false,
-      "dueDate": "2023-12-25T18:30:00.000Z",
-      "category": "personal",
-      "userId": 2,
-      "id": 1
-    },
-    {
-      "title": "Learning Angular",
-      "completionStatus": false,
-      "dueDate": "2023-12-26T18:30:00.000Z",
-      "category": "work",
-      "userId": 2,
-      "id": 2
-    },
-    {
-      "title": "shopping",
-      "completionStatus": false,
-      "dueDate": "2023-12-22T18:30:00.000Z",
-      "category": "shopping",
-      "userId": 2,
-      "id": 3
-    },
-    {
-      "title": "Angular Project",
-      "completionStatus": false,
-      "dueDate": "2024-02-15T18:30:00.000Z",
-      "category": "work",
-      "userId": 2,
-      "id": 4
-    }
-  ]
+  "tasks": []
 }

@@ -11,6 +11,7 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DashBoardComponent } from './components/dash-board/dash-board.component
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

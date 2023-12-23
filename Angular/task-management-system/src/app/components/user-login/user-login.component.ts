@@ -16,22 +16,21 @@ export class UserLoginComponent {
   public error : string = null;
   constructor(private authenticateService : AuthenticationService, private routes : Router){}
 
-  public onLogin() {
+  public async onLogin() : Promise<void>{
     
     const email : string = this.logInForn.value.email;
     const password: string = this.logInForn.value.password;
     
-    this.isSubmitted = true;
-
-    this.authenticateService.authenticateUser(email.toUpperCase(), password)
+    await this.authenticateService.authenticateUser(email.toUpperCase(), password);
     
     this.authenticateService.user.subscribe((user) => {
       if (user) {
         this.isSubmitted = false;
         this.error = null;
-        this.routes.navigate(['dash-board', 'add-task']);
+        this.routes.navigate(['dash-board']);
       }
       else {
+        this.isSubmitted = true;
         this.error = 'Invalid Credentials';
       }
       this.logInForn.resetForm();
