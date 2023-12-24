@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TaskModel } from "../models/task.model";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable, catchError, tap, throwError } from "rxjs";
 
 @Injectable({
     providedIn : 'root'
@@ -13,17 +13,11 @@ export class TaskService{
 
     constructor(private http: HttpClient){}
 
-    public addTask(task: TaskModel): Promise<Response> {
+    public addTask(task: TaskModel): Observable<any> {
 
-        const response = fetch(this.taskUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userData')).token
-            },
-            body: JSON.stringify(task)
+        return this.http.post<any>(this.taskUrl, task, {
+            headers: { 'Authorization': 'Bearer ' +  JSON.parse(localStorage.getItem('userData')).token}
         });
-        return response;
     }
 
     public getTasks() : Observable<any>{
@@ -34,8 +28,21 @@ export class TaskService{
         });
     }
 
+    public getTask(id: number): Observable<any> {
+        
+        return this.http.get(`${this.taskUrl}/${id}`, {
+            headers: { 'Authorization': 'Bearer ' +  JSON.parse(localStorage.getItem('userData')).token}
+        });
+    }
+
     public deleteTask(id: number) : Observable<any>{
         return this.http.delete(`${this.taskUrl}/${id}`, {
+            headers: { 'Authorization': 'Bearer ' +  JSON.parse(localStorage.getItem('userData')).token}
+        });
+    }
+
+    public updateTask(task: TaskModel, id : number): Observable<any> {
+        return this.http.put(`${this.taskUrl}/${id}`, task, {
             headers: { 'Authorization': 'Bearer ' +  JSON.parse(localStorage.getItem('userData')).token}
         });
     }

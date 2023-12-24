@@ -4,6 +4,17 @@ import { TaskService } from '../../services/tasks.service';
 import { TaskModel } from '../../models/task.model';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
+import { DialogContentComponent } from '../dialog/dialog-content.component';
 
 @Component({
   selector: 'app-task-list',
@@ -19,9 +30,12 @@ export class TaskListComponent implements OnInit{
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private taskService: TaskService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private dialog: MatDialog, private taskService: TaskService, private _liveAnnouncer: LiveAnnouncer, private route : ActivatedRoute, private routes : Router) { }
 
   public ngOnInit(): void {
+    this.route.queryParams.subscribe(params => { 
+        this.getTasks();
+    });
     this.getTasks();
   }
 
@@ -61,7 +75,15 @@ export class TaskListComponent implements OnInit{
     this.taskService.deleteTask(task.id).subscribe((response) => {
       this.getTasks();
     }, (error) => {
-      console.log(error)
+      this.openDialog();
     });
+  }
+
+  public onUpdate(task: any): void {
+    this.routes.navigate(['edit-task', task.id], { relativeTo: this.route });
+  }
+  
+  private openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
   }
 }

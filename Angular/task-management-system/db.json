@@ -18,5 +18,38 @@
       "id": 3
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "title": "Learning Angular",
+      "completionStatus": false,
+      "dueDate": "2023-12-26T18:30:00.000Z",
+      "category": "work",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "title": "Gym",
+      "completionStatus": false,
+      "dueDate": "2023-12-30T18:30:00.000Z",
+      "category": "personal",
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "title": "walk",
+      "completionStatus": true,
+      "dueDate": "2023-12-27T18:30:00.000Z",
+      "category": "others",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "title": "Cooking Course",
+      "completionStatus": false,
+      "dueDate": "2023-12-26T18:30:00.000Z",
+      "category": "personal",
+      "userId": 2,
+      "id": 4
+    }
+  ]
 }

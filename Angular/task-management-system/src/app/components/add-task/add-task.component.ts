@@ -34,16 +34,13 @@ export class AddTaskComponent {
   public onAddTask(): void{
     
     const task = new TaskModel(this.taskAddForm.value.title, this.taskAddForm.value.status === "false" ? false : true, this.taskAddForm.value.dueDate, this.taskAddForm.value.category, JSON.parse(localStorage.getItem('userData')).id);
+    this.isSubmitted = true;
 
-    this.taskService.addTask(task).then((response) => {
-      if (response.ok) {
-        this.isSubmittedError = false;
-      }
-      else {
-        this.isSubmittedError = true;
-      }
-      this.isSubmitted = true;
+    this.taskService.addTask(task).subscribe((response) => {
+      this.isSubmittedError = false;
       this.taskAddForm.resetForm();
+    }, (error) => {
+      this.isSubmittedError = true;
     });
   }
 }

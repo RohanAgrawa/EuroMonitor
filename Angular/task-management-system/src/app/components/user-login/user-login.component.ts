@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserResponseModel } from '../../models/user-response.model';
 
 @Component({
   selector: 'app-user-login',
@@ -16,24 +17,20 @@ export class UserLoginComponent {
   public error : string = null;
   constructor(private authenticateService : AuthenticationService, private routes : Router){}
 
-  public async onLogin() : Promise<void>{
+  public onLogin(): void {
     
-    const email : string = this.logInForn.value.email;
-    const password: string = this.logInForn.value.password;
-    
-    await this.authenticateService.authenticateUser(email.toUpperCase(), password);
-    
-    this.authenticateService.user.subscribe((user) => {
-      if (user) {
-        this.isSubmitted = false;
-        this.error = null;
-        this.routes.navigate(['dash-board']);
-      }
-      else {
-        this.isSubmitted = true;
-        this.error = 'Invalid Credentials';
-      }
-      this.logInForn.resetForm();
+    let authObs: Observable<UserResponseModel>;
+
+    authObs = this.authenticateService.authenticateUser(this.logInForn.value.email.toUpperCase(), this.logInForn.value.password);
+
+    authObs.subscribe((response) => {
+      this.isSubmitted = false;
+      this.error = null;
+      this.routes.navigate(['dash-board']);
+    }, (error) => {
+      this.isSubmitted = true;
+      this.error = 'Invalid Credentials'; 
     });
+    this.logInForn.resetForm();
   }
 }
