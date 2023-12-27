@@ -5,15 +5,13 @@ export class BookTransactionModel {
 
     public book: BookModel;
     public user : UserModel;
-    public issueDate: string;
-    public returnDate: string;
+    public issueDate: Date;
+    public returnDate: Date;
 
-    constructor(book : BookModel, user : UserModel, issueDate, returnDate) {
-        this.book = book;
-        this.user = user;
-        const issueBookDate : Date = issueDate;
-        this.issueDate = issueBookDate.getDate() + "/" + issueBookDate.getMonth() + "/" + issueBookDate.getFullYear();
-        const returnBookDate : Date = returnDate;
-        this.returnDate = returnBookDate.getDate() + "/" + returnBookDate.getMonth() + "/" + returnBookDate.getFullYear();
+    constructor(book: BookModel, user: UserModel, issueDate: Date, returnDate: Date) {
+        this.book = new BookModel(book.getTitle(), book.getAuthor(), book.getDescription(), book.getGenre(), book.getPublicationYear(), book.getIsbn(), book.getId());
+        this.user = new UserModel(user.getName(), user.getPhone_no(), user.getEmail(), user.getRole(), user.getPassword(), user.getId());
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
     }
 }

@@ -4,6 +4,8 @@ import { BookModel } from '../../../models/book.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { BookService } from '../../../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 
 @Component({
   selector: 'app-book-details',
@@ -20,33 +22,27 @@ export class BookDetailsComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router) { } 
+  constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog) { } 
 
   public ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.getBooks();
     });
-    this.getBooks();
   }
 
   private getBooks(): void {
-    this.bookService.getBooks().then((data) => {
+    this.bookService.getBooks().subscribe((data) => {
       this.books = data;
       this.dataSource = new MatTableDataSource<BookModel>(this.books);
       this.dataSource.paginator = this.paginator;
-    });
+    }, (error) => { this.openDialog();});
   }
 
 
   public onDelete(book: any): void{
-    this.bookService.removeBook(book.id).then((response) => {
-      if (response.ok) {
-        this.getBooks();
-      }
-      else {
-        console.log("some thing went wrong...");
-      }
-    });
+    this.bookService.removeBook(book.id).subscribe((response) => {
+      this.getBooks();
+    }, (error) => { this.openDialog();});
   }
 
   public onNavigate(book: any): void{
@@ -58,5 +54,9 @@ export class BookDetailsComponent implements OnInit{
     let filteredValue = (event.target as HTMLInputElement).value;
     filteredValue = filteredValue.trim().toUpperCase();
     this.dataSource.filter = filteredValue;
+  }
+
+  private openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
   }
 }

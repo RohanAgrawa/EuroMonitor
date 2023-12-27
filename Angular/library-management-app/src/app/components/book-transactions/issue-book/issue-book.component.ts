@@ -6,6 +6,8 @@ import { BookService } from '../../../services/book.service';
 import { BookTransactionService } from '../../../services/book-transaction.service';
 import { BookTransactionModel } from '../../../models/book-transaction.model';
 import { BookModel } from '../../../models/book.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 
 @Component({
   selector: 'app-issue-book',
@@ -23,40 +25,51 @@ export class IssueBookComponent {
   public book: BookModel;
   public bookResponse: BookTransactionModel;
 
-  constructor(private userService : UserService, private bookService : BookService, private bookTransactionService : BookTransactionService) {
+  constructor(private userService : UserService, private bookService : BookService, private bookTransactionService : BookTransactionService, private dialog : MatDialog) {
     
   }
-  async onIssueBook() {
+  public onIssueBook() : void{
 
     const userId = this.bookIssueForm.value.userId;
     const bookId = this.bookIssueForm.value.bookId;
+    let bookTransaction : BookTransactionModel;
 
-    await this.userService.getUser(+userId).then((data) => {
-      this.user = data;
-    });
-    await this.bookService.getBook(+bookId).then((data) => {
-      this.book = data;
-    })
-    if (this.book === null || this.user === null) {
+    this.userService.getUser(+userId).subscribe((data) => {
+      this.user = new UserModel(data.name, data.phone_no,  data.email, data.userType, null, data.id);
+      this.bookService.getBook(+bookId).subscribe((data) => {
+        this.book = new BookModel(data.title, data.author, data.description, data.genre, data.year, data.isbn, +data.id);
+        bookTransaction = new BookTransactionModel(this.book, this.user, new Date(this.bookIssueForm.value.issueDate), new Date(this.bookIssueForm.value.returnDate));
+        this.addBookTransaction(bookTransaction);
+      }, err => {
+        this.isSubmitted = true;
+        this.isSubmittedError = true;
+        this.openDialog();
+      });
+    }, err => {
       this.isSubmitted = true;
       this.isSubmittedError = true;
-      console.log("User or Book not found");
-    }
-    else {
-      const bookTransaction = new BookTransactionModel(this.book, this.user, this.bookIssueForm.value.issueDate, this.bookIssueForm.value.returnDate);
+      this.openDialog();
+    });
+    
+  }
 
-      const response = await this.bookTransactionService.borrowBook(bookTransaction);
-
-      if(response.ok){
+  private addBookTransaction(bookTransaction: BookTransactionModel): void {
+    console.log(bookTransaction);
+      this.bookTransactionService.borrowBook(bookTransaction).subscribe((data) => {
         this.isSubmittedError = false;
-
-        response.json().then((data) => {
-          this.bookResponse = data;
-        });
+        this.bookResponse = data;
         this.bookIssueForm.resetForm();
-      }
+        this.book = null;
+        this.user = null;
 
+      }, (error) => {
+        this.openDialog();
+        this.isSubmittedError = true;
+      });
       this.isSubmitted = true;
-    }
+  }
+
+  private openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
   }
 }

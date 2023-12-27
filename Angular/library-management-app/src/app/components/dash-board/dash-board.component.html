@@ -8,18 +8,10 @@
             <button mat-button [routerLink]="['create-book']" routerLinkActive="activeButton">Create Book</button>
         </div>
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
-            <button mat-button [matMenuTriggerFor]="addMenu">Add User</button>
-                <mat-menu #addMenu="matMenu">
-                    <button mat-menu-item [routerLink]="['add-user', 'admin']" routerLinkActive="activeButton">Admin</button>
-                    <button mat-menu-item [routerLink]="['add-user', 'public']" routerLinkActive="activeButton">Public user</button>
-                </mat-menu>
+            <button mat-button [routerLink]="['add-user', 'public']" routerLinkActive="activeButton">Add user</button>
         </div>
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
-            <button mat-button [matMenuTriggerFor]="menu">User</button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'admin'}" routerLinkActive="activeButton">Admin</button>
-                    <button mat-menu-item [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Public users</button>
-                </mat-menu>
+            <button mat-button [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Users</button>
         </div>
 
         <div style="margin-left: 70px;">
@@ -36,3 +28,5 @@
     </div>
     </mat-toolbar>
 </div>
+
+<router-outlet></router-outlet>

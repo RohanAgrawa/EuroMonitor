@@ -1,5 +1,5 @@
 <div class = "container">
-    <h3>Issue Book</h3>
+    <h3>ReturnBook</h3>
     <mat-card class = "bookReturnForm">
       <mat-card-content>
         <form class = "example-form" (ngSubmit)="onReturnBook()" #f = "ngForm">
@@ -31,9 +31,6 @@
       <mat-card class="response">
         <mat-card-content *ngIf="!isSubmittedError">
           <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Book Returned successfully!</h2>
-        </mat-card-content>
-        <mat-card-content *ngIf="isSubmittedError">
-          <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
         </mat-card-content>
       </mat-card>
     </div>

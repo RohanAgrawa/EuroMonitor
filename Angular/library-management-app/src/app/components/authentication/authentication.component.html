@@ -1,9 +1,9 @@
 <div class = "container">
-    <h3>Admin User Form</h3>
+    <h3>Admin {{isLoginMode ? 'Login' : 'Sign up'}}</h3>
     <mat-card class = "userForm">
       <mat-card-content>
-        <form class = "example-form" (ngSubmit)="onsubmit()" #f = "ngForm">
-          <mat-form-field class = "example-full-width">
+        <form class = "example-form" (ngSubmit)="onSubmit()" #f = "ngForm">
+          <mat-form-field class = "example-full-width" *ngIf="!isLoginMode">
             <mat-label>User Name</mat-label>
             <input matInput placeholder="name" name="username" type="text" ngModel required #username = "ngModel">
             <mat-error class = "error" *ngIf="!username.valid && username.touched">Requires name of User!</mat-error>
@@ -16,7 +16,7 @@
             <mat-error class = "error" *ngIf="!email.valid && email.touched">Enter a Valid email</mat-error>
           </mat-form-field>
   
-          <mat-form-field class = "example-full-width">
+          <mat-form-field class = "example-full-width" *ngIf="!isLoginMode">
             <mat-label>Phone Number</mat-label>
             <input type="tel"  name="mobile" matInput
                    placeholder="phone number" ngModel required pattern="[0-9]{10}" #mobile = "ngModel">
@@ -31,22 +31,14 @@
           </mat-form-field>
   
           <div style=" margin-top: 9px; padding-top: 12px;">
-            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Add User</button>
+            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">{{isLoginMode ? 'Login' : 'Sign Up'}}</button> | 
+            <button mat-flat-button color="accent" (click)="onSwitchMode()" type="button">
+                Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+              </button>
           </div>
         </form>
       </mat-card-content>
     </mat-card>
-    <div style="margin-top: 10px;" *ngIf="isSubmitted">
-      <mat-card class="response">
-        <mat-card-content *ngIf="!isSubmittedError">
-          <h2 style="margin-right: 100px; color: green; margin-left: 100px;">User added successfully!</h2>
-          <p>Id : {{userResponse.id}}</p>
-        </mat-card-content>
-        <mat-card-content *ngIf="isSubmittedError">
-          <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
   
   

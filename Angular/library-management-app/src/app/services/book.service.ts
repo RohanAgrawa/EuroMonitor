@@ -1,64 +1,54 @@
 import { Injectable } from '@angular/core';
 import { BookModel } from '../models/book.model';
+import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BookService {
 
   private bookUrl: string = "http://localhost:3000/books";
 
-  constructor() { }
+  private token: string = JSON.parse(localStorage.getItem('adminData')).token;
+  
+  constructor(private http : HttpClient) { }
 
-  public async addBook(bookCatlog : BookModel) : Promise<any> {
+  public addBook(bookCatlog : BookModel) : Observable<any> {
 
-    return await fetch(this.bookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookCatlog)
-    });
+    return this.http.post<any>(this.bookUrl, bookCatlog, { 
+      headers: { 'Authorization': `Bearer ${this.token}` } 
+    }).pipe(catchError(this.handleError));
+
   }
 
-  public async updateBook(id : number, user : BookModel) {
-    const response = await fetch(`${this.bookUrl}/${id}`, { 
-      method: 'PUT', 
-      headers: { 
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify(user) 
-    });
+  public updateBook(id : number, user : BookModel) {
     
-    return response;
+    return this.http.put<any>(`${this.bookUrl}/${id}`, user, {
+      headers: { 'Authorization': `Bearer ${this.token}` }
+    }).pipe(catchError(this.handleError));
   }
 
-  public async getBooks() : Promise<any>{
-    const data = await fetch(this.bookUrl);
-    if(data.ok)
-      return await data.json() ?? [];
-    else
-      return null
-  }
-
-  public async getBook(id: number): Promise<any>{
+  public getBooks() : Observable<any>{
     
-    const data = (await fetch(`${this.bookUrl}/${id}`));
-
-    if (data.ok)
-      return await data.json() ?? {};
-    else
-      return null;
+    return this.http.get<any>(this.bookUrl, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
   }
 
-  public removeBook(id : number) : Promise<Response>{
+  public getBook(id: number): Observable<any>{
     
-    const response = fetch(`${this.bookUrl}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    return response;
+    return this.http.get<any>(`${this.bookUrl}/${id}`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
+
+  public removeBook(id : number) : Observable<any>{
+    
+    return this.http.delete<any>(`${this.bookUrl}/${id}`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error : HttpErrorResponse) {
+    return throwError('Something went wrong!');
   }
 }

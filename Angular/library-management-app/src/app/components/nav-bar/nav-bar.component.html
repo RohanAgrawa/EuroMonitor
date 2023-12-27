@@ -2,5 +2,8 @@
   <mat-toolbar color = "primary">
     <img src="../../../assets/logo.svg" alt="Library Management" class="Logo">
     <span class="center-text">Library Management System</span>
+    <span class="spacer"></span>
+      <button *ngIf= '!isLoggedIn' mat-button  [routerLink]="['authentication']" routerLinkActive="active"><span>Log In</span></button>
+      <button *ngIf='isLoggedIn' (click)="onLogout()" mat-button ><span>Log out</span></button>
   </mat-toolbar>
 </div>

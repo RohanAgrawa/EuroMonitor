@@ -2,46 +2,32 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddUserComponent } from './components/users/add-user/add-user.component';
 import {MaterialModule} from "./modules/material/material.module";
 import {FormsModule} from "@angular/forms";
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
-import { UserDetailsComponent } from './components/users/user-details/user-details.component';
-import { AddAdminComponent } from './components/users/add-user/add-admin/add-admin.component';
-import { UpdateUserComponent } from './components/users/update-user/update-user.component';
-import { UpdateAdminUserComponent } from './components/users/update-user/update-admin-user/update-admin-user.component';
-import { CreateBookCatlogComponent } from './components/books/create-book-catlog/create-book-catlog.component';
-import { BookDetailsComponent } from './components/books/book-details/book-details.component';
-import { UpdateBookCatlogComponent } from './components/books/update-book-catlog/update-book-catlog.component';
-import { IssueBookComponent } from './components/book-transactions/issue-book/issue-book.component';
-import { ReturnBookComponent } from './components/book-transactions/return-book/return-book.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { AuthenticationService } from './services/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddUserComponent,
     NavBarComponent,
     DashBoardComponent,
-    UserDetailsComponent,
-    AddAdminComponent,
-    UpdateUserComponent,
-    UpdateAdminUserComponent,
-    CreateBookCatlogComponent,
-    BookDetailsComponent,
-    UpdateBookCatlogComponent,
-    IssueBookComponent,
-    ReturnBookComponent
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

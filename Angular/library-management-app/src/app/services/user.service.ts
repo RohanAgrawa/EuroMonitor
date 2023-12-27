@@ -1,109 +1,56 @@
 import {Injectable} from '@angular/core';
 import {UserModel} from "../models/user.model";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService{
 
-  private userUrl: string = "http://localhost:3000/users";
-  private adminUrl: string = "http://localhost:3000/adminUsers";
-  constructor() {
+  private userUrl: string = "http://localhost:3000/publicUsers";
+  private adminUrl: string = "http://localhost:3000";
+
+  private token: string = JSON.parse(localStorage.getItem('adminData')).token;  
+  constructor(private http : HttpClient) {
 
   }
 
-  public async addUser(user : UserModel) : Promise<any> {
+  public addUser(user : UserModel) : Observable<any> {
 
-    return await fetch(this.userUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user)
-    });
+    return this.http.post<any>(this.userUrl, user, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
   }
 
-  public async addAdmin(user : UserModel) : Promise<any> {
 
-    return await fetch(this.adminUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user)
-    });
+  public handleError(error : HttpErrorResponse) {
+    return throwError('Something went wrong!');
   }
 
-  public async getUsers() : Promise<any>{
-    const response = await fetch(this.userUrl);
-    if(response.ok)
-      return await response.json() ?? [];
-    else
-      return null;
-  }
-
-  public async getUser(id: number) : Promise<any>{
-    const response = (await fetch(`${this.userUrl}/${id}`));
-
-    if (response.ok)
-      return response.json() ?? {};
-    else
-      return null;
-  }
-
-  public async getAdmins() : Promise<any>{
-    const data = await fetch(this.adminUrl);
-    return await data.json() ?? [];
-  }
-
-  public async getAdmin(id: number): Promise<any>{
-    return (await fetch(`${this.adminUrl}/${id}`)).json() ?? {};
-  }
-
-  public async updateUser(id : number, user : UserModel) {
-    const response = await fetch(`${this.userUrl}/${id}`, { 
-      method: 'PUT', 
-      headers: { 
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify(user) 
-    });
+  public getUsers() : Observable<any>{
     
-    return response;
+    return this.http.get<any>(this.userUrl, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
   }
 
-  public async updateAdmin(id: number, user: UserModel) : Promise<Response>{
+  public getUser(id: number) : Observable<any>{
+    return this.http.get<any>(`${this.userUrl}/${id}`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
 
-    const response = await fetch(`${this.adminUrl}/${id}`, { 
-      method: 'PUT', 
-      headers: { 
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify(user) 
-    });
+
+  public updateUser(id : number, user : UserModel) : Observable<any>{
+    return this.http.put<any>(`${this.userUrl}/${id}`, user, {
+      headers: { 'Authorization': `Bearer ${this.token}` }
+    }).pipe(catchError(this.handleError));
+  }
+
+
+  public deleteUser(id : number) {
     
-    return response;
+    return this.http.delete<any>(`${this.userUrl}/${id}`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
   }
-
-  public deleteUser(id : number) : Promise<Response>{
-    
-    const response = fetch(`${this.userUrl}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    return response;
-  }
-
-  public deleteAdmin(id: number) : Promise<Response>{
-    const response = fetch(`${this.adminUrl}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    return response;
-  }
-
 }

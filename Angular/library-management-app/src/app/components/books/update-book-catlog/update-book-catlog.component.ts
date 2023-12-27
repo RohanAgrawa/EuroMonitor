@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../services/book.service';
 import { BookModel } from '../../../models/book.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 
 @Component({
   selector: 'app-update-book-catlog',
@@ -20,17 +22,18 @@ export class UpdateBookCatlogComponent implements OnInit{
 
   public genres = [
     { genre: 'Fiction', value: 'fiction' },
-    { genre: 'Novel', value: 'novel' }
+    { genre: 'Novel', value: 'novel' },
+    { genre: 'Other', value: 'other'}
   ];
 
-  constructor(private route: ActivatedRoute, private bookService: BookService, private routes: Router) { 
+  constructor(private route: ActivatedRoute, private bookService: BookService, private routes: Router, private dialog : MatDialog) { 
     
   }
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.bookService.getBook(+this.id).then((data) => {
+      this.bookService.getBook(+this.id).subscribe((data) => {
         this.bookForm.setValue({
           title: data.title,
           author: data.author,
@@ -42,7 +45,7 @@ export class UpdateBookCatlogComponent implements OnInit{
 
         this.selectedGenre = data.genre;
         this.selectedGenre = this.selectedGenre.toLowerCase();
-      });
+      }, (error) => { this.openDialog();});
     });
   }
 
@@ -52,12 +55,13 @@ export class UpdateBookCatlogComponent implements OnInit{
       this.bookForm.value.description, this.bookForm.value.genre, this.bookForm.value.year,
       this.bookForm.value.isbn);
     
-    this.bookService.updateBook(+this.id, updatedBookCatlog).then((response) => {
-      
-      if (response.ok) {
-        this.routes.navigate(['books'], { queryParams: { bookType: "Updated" }, queryParamsHandling: 'merge' , fragment : this.id});
-      }
-    });
+    this.bookService.updateBook(+this.id, updatedBookCatlog).subscribe((response) => {
+        this.routes.navigate(['dashboard','books'], { queryParams: { bookType: "Updated" }, queryParamsHandling: 'merge' , fragment : this.id});
+    }, (error) => { this.openDialog();});
 
+  }
+
+  private openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
   }
 }

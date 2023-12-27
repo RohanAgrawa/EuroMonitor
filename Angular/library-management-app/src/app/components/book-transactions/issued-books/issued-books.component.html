@@ -1,0 +1,73 @@
+<div style="margin-left: 1000px; margin-top: 20px;">
+    <input type="text" matInput (input)="applyFilter($event)" placeholder="get issued books by userId, bookId, title, email">
+</div>
+
+<div class="container">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        
+        <!-- Position Column -->
+        <ng-container matColumnDef="borrowId">
+          <th mat-header-cell *matHeaderCellDef>Borrowed Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.borrowId}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="bookId">
+          <th mat-header-cell *matHeaderCellDef> Book Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.bookId}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="bookTitle">
+          <th mat-header-cell *matHeaderCellDef> Book Title </th>
+          <td mat-cell *matCellDef="let element"> {{element.bookTitle}} </td>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="userId">
+          <th mat-header-cell *matHeaderCellDef> User Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> User Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+        <ng-container matColumnDef="userEmail">
+            <th mat-header-cell *matHeaderCellDef> User Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.userEmail}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+        <ng-container matColumnDef="issueDate">
+            <th mat-header-cell *matHeaderCellDef> Issued Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.issueDate | date}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+        <ng-container matColumnDef="returnDate">
+            <th mat-header-cell *matHeaderCellDef> Return Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.returnDate | date}} </td>
+          </ng-container>
+        
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Return </th>
+          <td mat-cell *matCellDef="let row"><button (click)="onReturnBook(row)" mat-stroked-button color = "warn">Return</button></td>  
+        </ng-container> 
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+    <router-outlet></router-outlet>
+  </div>

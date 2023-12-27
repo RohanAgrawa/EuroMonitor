@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { UserModel } from '../../../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 
 @Component({
   selector: 'app-update-user',
@@ -17,14 +19,14 @@ export class UpdateUserComponent implements OnInit{
   public id: string;
   public responseError: boolean = false;
 
-  constructor(private route : ActivatedRoute, private userService : UserService, private routes : Router){ }
+  constructor(private route : ActivatedRoute, private userService : UserService, private routes : Router, private dialog : MatDialog){ }
   
   public ngOnInit(): void {
     this.query = this.route.snapshot.queryParams['userType'];
 
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.userService.getUser(+this.id).then((data) => {
+      this.userService.getUser(+this.id).subscribe((data) => {
         this.userForm.setValue({
           username: data.name,
           email: data.email,
@@ -38,17 +40,17 @@ export class UpdateUserComponent implements OnInit{
     const updatedUser = new UserModel(this.userForm.value.username, this.userForm.value.mobile,
                                         this.userForm.value.email); 
 
-      this.userService.updateUser(+this.id, updatedUser).then((response) => {
-
-        if (response.ok) {
-          this.routes.navigate(['/users'], { queryParams: { userType: this.query + "Updated" }, queryParamsHandling: 'merge' , fragment : this.id});
-        }
-        else{
-          this.responseError = true;
-        }
+      this.userService.updateUser(+this.id, updatedUser).subscribe((response) => {
+  
+        this.routes.navigate(['dashboard','users'], { queryParams: { userType: this.query + "Updated" }, queryParamsHandling: 'merge' , fragment : this.id});
+      }, (error) => { 
+        this.openDialog();
       });
   }
 
+  private openDialog() {
+    const dialogRef = this.dialog.open(DialogContentComponent);
+  }
   
 
 }
