@@ -8,7 +8,7 @@ export class BookService {
 
   private bookUrl: string = "http://localhost:3000/books";
 
-  private token: string = JSON.parse(localStorage.getItem('adminData')).token;
+  private token: string = localStorage.getItem("adminData") === null? "Fake" : JSON.parse(localStorage.getItem('adminData')).token;
   
   constructor(private http : HttpClient) { }
 

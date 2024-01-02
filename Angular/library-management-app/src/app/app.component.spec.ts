@@ -1,31 +1,44 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { DebugElement } from "@angular/core";
+import { ComponentFixture, waitForAsync, TestBed } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
+import { MaterialModule } from "./modules/material/material.module";
+import { AuthenticationService } from "./services/authentication.service";
+import { AppModule } from "./app.module";
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+    let authServiceSpy: any;
+    let el: DebugElement;
+    
+    beforeEach(waitForAsync(() => {
+        const spy = jasmine.createSpyObj('AuthenticationService', ['user', 'logout']);
+    
+        TestBed.configureTestingModule({
+            declarations: [AppComponent],
+            imports: [MaterialModule, AppModule],
+            providers: [{ provide: AuthenticationService, useValue: spy }],
+        }).compileComponents().then(() => {
+            fixture = TestBed.createComponent(AppComponent);
+            component = fixture.componentInstance;
+            authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+            el = fixture.debugElement;
+        });
+    }));
+    
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+    
+    it('should call autoLogin method of authentication service on ngOnInit', () => {
+        waitForAsync(() => {
+            component.ngOnInit();
+            expect(authServiceSpy.autoLogin).toHaveBeenCalled();
+        });
+    });
 
-  it(`should have as title 'library-management-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('library-management-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, library-management-app');
-  });
+    afterEach(() => {
+        fixture.destroy();
+    });
 });

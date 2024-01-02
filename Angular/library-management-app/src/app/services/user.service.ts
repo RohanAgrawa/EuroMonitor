@@ -7,10 +7,10 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 export class UserService{
 
   private userUrl: string = "http://localhost:3000/publicUsers";
-  private adminUrl: string = "http://localhost:3000";
 
-  private token: string = JSON.parse(localStorage.getItem('adminData')).token;  
-  constructor(private http : HttpClient) {
+  private token: string = localStorage.getItem("adminData") === null? "Fake" : JSON.parse(localStorage.getItem('adminData')).token;  
+  
+  constructor(private http: HttpClient) {
 
   }
 

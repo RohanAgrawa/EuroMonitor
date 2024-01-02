@@ -115,6 +115,12 @@
       "name": "AKSHAT BHAWSAR",
       "email": "AKSHAT.BHAWSAR@GMAIL.COM",
       "id": 3
+    },
+    {
+      "phone_no": "4567891236",
+      "name": "SOMIL",
+      "email": "SOMIL12@GMAIL.COM",
+      "id": 4
     }
   ],
   "books": [
@@ -149,7 +155,7 @@
       "title": "JAVA",
       "author": "ROHAN",
       "description": "JAVA",
-      "genre": "NOVEL",
+      "genre": "OTHER",
       "publicationYear": "2023",
       "isbn": "978-63-560-6066-1",
       "id": 4

@@ -7,7 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class BookTransactionService {
 
   private borrowedBookUrl: string = "http://localhost:3000/borrow";
-  private token: string = JSON.parse(localStorage.getItem('adminData')).token;
+  private token: string = localStorage.getItem("adminData") === null? "Fake" : JSON.parse(localStorage.getItem('adminData')).token;
 
   constructor(private http : HttpClient) { }
 
