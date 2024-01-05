@@ -1,0 +1,14 @@
+<div class = "dash-board">
+    <mat-toolbar>
+      <div class = "navigation">
+        <div>
+            <button mat-button [routerLink]="['book-list']" routerLinkActive="activeButton">Books</button>
+        </div>
+        <div style="margin-left: 70px;">
+            <button mat-button  routerLinkActive="activeButton">Borrowed Books</button>
+        </div>
+    </div>
+    </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>

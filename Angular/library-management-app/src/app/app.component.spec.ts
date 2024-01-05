@@ -1,5 +1,5 @@
 import { DebugElement } from "@angular/core";
-import { ComponentFixture, waitForAsync, TestBed } from "@angular/core/testing";
+import { ComponentFixture, waitForAsync, TestBed, fakeAsync, flushMicrotasks } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
 import { MaterialModule } from "./modules/material/material.module";
 import { AuthenticationService } from "./services/authentication.service";
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
     let el: DebugElement;
     
     beforeEach(waitForAsync(() => {
-        const spy = jasmine.createSpyObj('AuthenticationService', ['user', 'logout']);
+        const spy = jasmine.createSpyObj('AuthenticationService', ['autoLogin']);
     
         TestBed.configureTestingModule({
             declarations: [AppComponent],
@@ -32,10 +32,10 @@ describe('AppComponent', () => {
     });
     
     it('should call autoLogin method of authentication service on ngOnInit', () => {
-        waitForAsync(() => {
+
             component.ngOnInit();
             expect(authServiceSpy.autoLogin).toHaveBeenCalled();
-        });
+        
     });
 
     afterEach(() => {

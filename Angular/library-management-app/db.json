@@ -95,6 +95,14 @@
       "name": "DARSHAN",
       "role": "12345Aa*",
       "id": 12
+    },
+    {
+      "email": "AMIT@GMAIL.COM",
+      "password": "$2a$10$jdadW988UxIqRpvNo22zrekkPRV6unPbt5tSO9pj72I.JsFoCOMsG",
+      "phone_no": "1234567891",
+      "name": "AMIT",
+      "role": "PUBLIC",
+      "id": 13
     }
   ],
   "publicUsers": [
@@ -121,6 +129,19 @@
       "name": "SOMIL",
       "email": "SOMIL12@GMAIL.COM",
       "id": 4
+    },
+    {
+      "phone_no": "1234567891",
+      "name": "AJAY MANAN",
+      "email": "AJAY@GMAIL.COM",
+      "id": 5
+    },
+    {
+      "phone_no": "4567812301",
+      "name": "ABINAV",
+      "email": "ABHINAV@GMAIL.COM",
+      "role": "PUBLIC",
+      "id": 6
     }
   ],
   "books": [
@@ -155,10 +176,19 @@
       "title": "JAVA",
       "author": "ROHAN",
       "description": "JAVA",
-      "genre": "OTHER",
+      "genre": "FICTION",
       "publicationYear": "2023",
       "isbn": "978-63-560-6066-1",
       "id": 4
+    },
+    {
+      "title": "HAPPY",
+      "author": "ROHAN",
+      "description": "HAPPINESS",
+      "genre": "FICTION",
+      "publicationYear": "2024",
+      "isbn": "456-45678-45-123-4",
+      "id": 5
     }
   ],
   "borrow": [

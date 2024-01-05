@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserModel } from '../../models/user.model';
@@ -13,7 +13,7 @@ import { DialogContentComponent } from '../dialog-box/dialog-content.component';
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })
-export class AuthenticationComponent {
+export class AuthenticationComponent implements OnInit{
 
   @ViewChild('f') public userForm: NgForm;
   public isSubmitted: boolean = false;
@@ -24,7 +24,12 @@ export class AuthenticationComponent {
   constructor(private authService : AuthenticationService, private routes : Router, private dialog : MatDialog) {
   }
 
-  onSwitchMode() {
+
+  public ngOnInit(): void{
+    
+  }
+
+  public onSwitchMode() : void{
     this.isLoginMode = !this.isLoginMode;
   }
 

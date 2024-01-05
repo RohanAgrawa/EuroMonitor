@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +10,11 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PublicComponent } from './components/public/public.component';
+import { publicAuthenticationService } from './services/public-authentication.service';
+import { BooksComponent } from './components/user-utilities/books/books.component';
+import { UserDashboardComponent } from './components/user-utilities/user-dashboard/user-dashboard.component';
+import { BorrowedStatusComponent } from './components/user-utilities/borrowed-status/borrowed-status.component';
 
 
 @NgModule({
@@ -17,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     NavBarComponent,
     DashBoardComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    PublicComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
-  bootstrap: [AppComponent]
+  providers: [AuthenticationService, publicAuthenticationService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, flushMicrotasks, waitForAsync } from '@angular/core/testing';
 import { NavBarComponent } from './nav-bar.component';
 import { AuthenticationService } from '../../services/authentication.service';
 import { of } from 'rxjs';
 import { UserResponseModel } from '../../models/userResponse.model';
 import { MaterialModule } from '../../modules/material/material.module';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 describe('NavBarComponent', () => {
@@ -14,12 +14,13 @@ describe('NavBarComponent', () => {
     let el: DebugElement;
 
   beforeEach(waitForAsync(() => {
-    const spy = jasmine.createSpyObj('AuthenticationService', ['user', 'logout']);
+    const spy = jasmine.createSpyObj('AuthenticationService', ['logout']);
 
     TestBed.configureTestingModule({
         declarations: [NavBarComponent],
         imports: [MaterialModule],
       providers: [{ provide: AuthenticationService, useValue: spy }],
+      schemas : [NO_ERRORS_SCHEMA]
     }).compileComponents().then(() => {
         fixture = TestBed.createComponent(NavBarComponent);
         component = fixture.componentInstance;
@@ -32,37 +33,42 @@ describe('NavBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize isLoggedIn to true when user is logged in', () => {
+  it('should initialize isLoggedIn to true when user is logged in', fakeAsync(() => {
 
       
     const userResponse = new UserResponseModel(1, "testName", 1234567891 , "test@gmail.com", "ADMIN", "accessToken", new Date());
     const mockUser = userResponse;
-    authServiceSpy.user.and.returnValue(of(mockUser)) ;
+    
 
-      waitForAsync(() => {
-          component.ngOnInit();
-          expect(component.isLoggedIn).toBeTrue();
-          const active = el.query(By.css('.active'));
-          expect(active).toBeNull();
-    })      
-  });
+    Promise.resolve().then(() => {
+      authServiceSpy.user  = of(mockUser);
+    });
 
-  it('should initialize isLoggedIn to false when user is not logged in', () => {
-    authServiceSpy.user.and.returnValue(of(null));
+    
 
-      waitForAsync(() => {
-          component.ngOnInit();
-          expect(component.isLoggedIn).toBeFalse();
-          const active = el.queryAll(By.css('.active'));
-          expect(active.length).toEqual(1);
+    flushMicrotasks();
+    fixture.detectChanges();
+   
+    expect(component.isLoggedIn).toBeTrue();
+    const active = el.query(By.css('.active'));
+    expect(active).toBeNull();
+          
+  }));
+
+  it('should initialize isLoggedIn to false when user is not logged in', fakeAsync(() => {
+
+      Promise.resolve().then(() => {
+        authServiceSpy.user  = of(null);
       });
-
-  });
+      flushMicrotasks();
+      fixture.detectChanges();
+      expect(component.isLoggedIn).toBeFalse();
+  }));
 
   it('should call authService.logout() on logout', () => {
     component.onLogout();
 
-      expect(authServiceSpy.logout).toHaveBeenCalled();
+    expect(authServiceSpy.logout).toHaveBeenCalled();
         
   });
     

@@ -1,0 +1,18 @@
+.dash-board{
+    margin-top: 25px;
+    margin-right: 300px;
+    margin-left: 500px;
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+}
+
+mat-toolbar{
+    background-color: transparent;
+}
+
+.activeButton{
+    background-color: antiquewhite;
+}

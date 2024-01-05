@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, NgForm} from "@angular/forms";
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
@@ -23,7 +23,9 @@ export class AddUserComponent implements OnInit{
   }
 
   ngOnInit() {
+    console.log('userForm', this.userForm)
   }
+
 
   public onsubmit() : void{
 
