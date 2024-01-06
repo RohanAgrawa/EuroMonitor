@@ -32,15 +32,15 @@
 
         <!-- Weight Column -->
         <ng-container matColumnDef="userName">
-            <th mat-header-cell *matHeaderCellDef>  Name </th>
+            <th mat-header-cell *matHeaderCellDef> User Name </th>
             <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
           </ng-container>
 
           <!-- Weight Column -->
         <ng-container matColumnDef="userEmail">
-            <th mat-header-cell *matHeaderCellDef>  Email </th>
+            <th mat-header-cell *matHeaderCellDef> User Email </th>
             <td mat-cell *matCellDef="let element"> {{element.userEmail}} </td>
-        </ng-container>
+          </ng-container>
 
           <!-- Weight Column -->
         <ng-container matColumnDef="issueDate">
@@ -53,11 +53,17 @@
             <th mat-header-cell *matHeaderCellDef> Return Date </th>
             <td mat-cell *matCellDef="let element"> {{element.returnDate | date}} </td>
           </ng-container>
+        
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="approve">
+          <th mat-header-cell *matHeaderCellDef> Approve </th>
+          <td mat-cell *matCellDef="let row"><button (click)="onApproveBook(row)" mat-stroked-button color = "primary">Approve</button></td>  
+        </ng-container> 
 
-          <ng-container matColumnDef="borrowingStatus">
-            <th mat-header-cell *matHeaderCellDef> Borrowing status </th>
-            <td mat-cell *matCellDef="let element; let row"> {{element.borrowingStatus}}</td>
-          </ng-container>
+        <ng-container matColumnDef="reject">
+            <th mat-header-cell *matHeaderCellDef> Reject </th>
+            <td mat-cell *matCellDef="let row"><button (click)="onRejectBook(row)" mat-stroked-button color = "warn">Reject</button></td>  
+          </ng-container> 
   
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

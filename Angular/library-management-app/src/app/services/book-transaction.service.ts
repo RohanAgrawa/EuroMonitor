@@ -27,7 +27,25 @@ export class BookTransactionService {
   }
 
   public getIssuedBooks(): Observable<any>{
-    return this.http.get<any>(this.borrowedBookUrl, {
+    return this.http.get<any>(`${this.borrowedBookUrl}?&status=APPROVED`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
+
+  public approveBook(borrowedId: number) : Observable<any> {
+    return this.http.patch<any>(`${this.borrowedBookUrl}/${borrowedId}`, {status : 'APPROVED'}, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
+
+  public rejectBook(borrowedId: number): Observable<any> {
+    return this.http.delete<any>(`${this.borrowedBookUrl}/${borrowedId}`, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
+
+  public getRequestedBooks(): Observable<any> {
+    return this.http.get<any>(`${this.borrowedBookUrl}?status=PENDING`, {
       headers : {'Authorization' : `Bearer ${this.token}`}
     }).pipe(catchError(this.handleError));
   }

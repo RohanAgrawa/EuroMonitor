@@ -4,6 +4,7 @@ import { BookService } from '../../../services/book.service';
 import { BookModel } from '../../../models/book.model';
 import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-book-catlog',
@@ -25,7 +26,7 @@ export class CreateBookCatlogComponent {
     { genre: 'Other', value: 'other'}
   ];
 
-  constructor(private bookService : BookService, private dialog : MatDialog) { }
+  constructor(private bookService : BookService, private dialog : MatDialog, private routes : Router) { }
    
   public onsubmit(): void {
 
@@ -38,6 +39,7 @@ export class CreateBookCatlogComponent {
       this.bookId = data.id;
       this.bookForm.resetForm();
       this.isSubmittedError = false;
+      this.routes.navigate(['/dashboard', 'books']);
     }, (error) => {
       this.isSubmittedError = true;
       this.openDialog();

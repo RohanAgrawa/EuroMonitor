@@ -24,7 +24,7 @@ describe('BookTransactionService', () => {
 
         let user = new UserModel("test", 1234567891, "test@gmail.com", null, null,1);
         let book = new BookModel("testBook", "testAuthor1", "testDescription", "testGenre", "testPublicationYear", "testIsbn", 1);
-            let bookTransaction = new BookTransactionModel(book, user, new Date(), new Date());
+            let bookTransaction = new BookTransactionModel(book, user, new Date(), new Date(), 'approved');
     
             bookTransactionService.borrowBook(bookTransaction).subscribe((response) => {
                 expect(response).toBeTruthy();

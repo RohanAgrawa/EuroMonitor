@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookModel } from '../../../models/book.model';
 import { BookService } from '../../../services/book.service';
 import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
+import { RequestBookService } from '../../../services/request-book.service';
+import { UserModel } from '../../../models/user.model';
+import { BookTransactionModel } from '../../../models/book-transaction.model';
 
 @Component({
   selector: 'app-books',
@@ -21,7 +24,7 @@ export class BooksComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog) { } 
+  constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
 
   public ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -38,8 +41,20 @@ export class BooksComponent {
   }
 
   public onBorrow(book: any): void{
+    console.log(book)
     
-    this.routes.navigate([book.id,'update'], { relativeTo: this.route})
+    const bookModel = new BookModel(book.title, book.author, book.description, book.genre, book.publicationYear, book.isbn, +book.id);
+    const user = JSON.parse(localStorage.getItem('publicData'));
+    const userModel = new UserModel(user[0].name, user[0].phone_no, user[0].email, user[0].userType, null, user[0].id);
+
+    const returnDate = new Date();
+    returnDate.setDate(returnDate.getDate() + 10);
+    
+    const borrowedBook = new BookTransactionModel(bookModel, userModel, new Date(), returnDate, 'PENDING');
+
+    this.requestBook.requestBook(borrowedBook).subscribe((data) => {
+      console.log(data);
+    }, (error) => { this.openDialog();});
   }
 
   public applyFilter(event: Event): void {

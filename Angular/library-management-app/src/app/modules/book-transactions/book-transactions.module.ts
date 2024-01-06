@@ -10,11 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BookService } from '../../services/book.service';
 import { UserService } from '../../services/user.service';
 import { BookTransactionService } from '../../services/book-transaction.service';
+import { BookApprovalComponent } from '../../components/book-transactions/book-approval/book-approval.component';
 
 
 
 @NgModule({
-  declarations: [IssueBookComponent, ReturnBookComponent, IssuedBooksComponent],
+  declarations: [IssueBookComponent, ReturnBookComponent, IssuedBooksComponent, BookApprovalComponent],
   imports: [
     CommonModule,
     BookTransactionsRoutingModule,

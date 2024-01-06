@@ -2,23 +2,24 @@ import { Injectable } from "@angular/core";
 import { AuthenticationService } from "./authentication.service";
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable, map, take } from "rxjs";
+import { publicAuthenticationService } from "./public-authentication.service";
 
 @Injectable({
     providedIn : 'root'
 })
 
-export class AuthGuardService implements CanActivate, CanActivateChild{
+export class PublicUtilityGuardService implements CanActivate, CanActivateChild{
 
-    constructor(private authenticationService: AuthenticationService, private router: Router) { }
+    constructor(private authenticationService: publicAuthenticationService, private router: Router) { }
     
     public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> | Observable<boolean | UrlTree> | boolean | UrlTree {
         
-        return this.authenticationService.user.pipe(take(1), map(user => {
+        return this.authenticationService.publicUser.pipe(take(1), map(user => {
             const isAuth = !!user;
             if (isAuth) {
                 return true;
             }
-            return this.router.createUrlTree(['/authentication']);
+            return this.router.createUrlTree(['/publicAuthentication']);
         }));
     }
 

@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { MaterialModule } from "../material/material.module";
 import { BookService } from "../../services/book.service";
 import { UserUtilitiesRoutingModule } from "./user-utilities-routing.module";
+import { RequestBookService } from "../../services/request-book.service";
 
 @NgModule({
     declarations: [
@@ -21,7 +22,7 @@ import { UserUtilitiesRoutingModule } from "./user-utilities-routing.module";
         CommonModule
     ],
 
-    providers: [BookService],
+    providers: [BookService, RequestBookService],
 })
 
 export class UserUtilitiesModule { }

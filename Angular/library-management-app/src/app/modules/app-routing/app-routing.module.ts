@@ -6,10 +6,12 @@ import { LoginGuardService } from '../../services/login-guard.service';
 import { AuthGuardService } from '../../services/auth-guard.service';
 import { PublicComponent } from '../../components/public/public.component';
 import { UserDashboardComponent } from '../../components/user-utilities/user-dashboard/user-dashboard.component';
+import { PublicAuthGuardService } from '../../services/public-auth-guard.service';
+import { PublicUtilityGuardService } from '../../services/public-utilities-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'authentication', component: AuthenticationComponent, title: 'Authentication', canActivate: [LoginGuardService] },
-  { path: 'publicAuthentication', component : PublicComponent, title : 'Public Authentication'},
+  { path: 'authentication', component: AuthenticationComponent, title: 'Authentication', canActivate: [LoginGuardService, PublicAuthGuardService] },
+  { path: 'publicAuthentication', component: PublicComponent, title: 'Public Authentication', canActivate: [PublicAuthGuardService, LoginGuardService]},
   {
     path: 'dashboard', component: DashBoardComponent, canActivate: [AuthGuardService], canActivateChild : [AuthGuardService], title: 'Dashboard', children: [
       { path : '', loadChildren : () => import('../books/books.module').then(m => m.BooksModule)},
@@ -18,11 +20,11 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'public-dashboard', component: UserDashboardComponent, title: 'Public Dashboard', children: [
+    path: 'public-dashboard', component: UserDashboardComponent, title: 'Public Dashboard',canActivate: [PublicUtilityGuardService], children: [
       { path: '', loadChildren: () => import('../user-utilities/user-utilities.module').then(m => m.UserUtilitiesModule) }
     ]
   },
-  {path : '', redirectTo : 'authentication', pathMatch : 'full'},
+  { path: '', redirectTo: 'authentication', pathMatch: 'full' },
 ]
 
 @NgModule({

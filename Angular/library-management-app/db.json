@@ -7,250 +7,50 @@
       "name": "ROHAN",
       "id": 1,
       "role": "ADMIN"
-    },
-    {
-      "email": "RAJ@GMAIL.COM",
-      "password": "$2a$10$MH4MWxIjPq8WLjSrxaVMBOIdN1ouYOqW5j0UrhvQCjgTKlrDhc6qa",
-      "phone_no": "1234567890",
-      "name": "RAJ",
-      "role": "ADMIN",
-      "id": 2
-    },
-    {
-      "email": "SANSKAR@GMAIL.COM",
-      "password": "$2a$10$3s0Utl9R8yU2THikSo2f6u18s.RXOyzxWSLJjr99Zp4kUDV1OX/GS",
-      "phone_no": "1234567890",
-      "name": "SANSKAR",
-      "role": "ADMIN",
-      "id": 3
-    },
-    {
-      "email": "SOMIL32@GMAIL.COM",
-      "password": "$2a$10$Uhvz5PLvejcVzsUElKlVKecDM9jcZC2OLvTUKbVeJW/xYDbY.oa6m",
-      "phone_no": "4567894210",
-      "name": "SOMIL SHARMA",
-      "role": "ADMIN",
-      "id": 4
-    },
-    {
-      "email": "RAJESH@GMAIL.COM",
-      "password": "$2a$10$1oq5bugTFZrF5MIQuPKXZeskwfSlLeqh88rABUgBsluPTdIZ9QRzW",
-      "phone_no": "1234567890",
-      "name": "RAJESH",
-      "role": "ADMIN",
-      "id": 5
-    },
-    {
-      "email": "RAM@GMAIL.COM",
-      "password": "$2a$10$bifnESXmbE7.xMzBFg76Vu9bYYFR7q22M2nh2oOxcSxQcS2t4fbWe",
-      "phone_no": "1234567890",
-      "name": "RAM",
-      "role": "ADMIN",
-      "id": 6
-    },
-    {
-      "email": "AKSHAT@GMAIL.COM",
-      "password": "$2a$10$VENdLHHMKhouP8etI6H8LejiEmAuDECNUqUeh2b75DJep6jzUkv3K",
-      "phone_no": "1234567890",
-      "name": "AKSHAT",
-      "role": "ADMIN",
-      "id": 7
-    },
-    {
-      "email": "RUPAM@GMAIL.COM",
-      "password": "$2a$10$pMgpMBCJWfJnQHxrO/d0gOeqSROEFzkcal3GrTreH7LlehdmhK6Zm",
-      "phone_no": "4567891230",
-      "name": "RUPAM",
-      "role": "ADMIN",
-      "id": 8
-    },
-    {
-      "email": "ARJUN@GMAIL.COM",
-      "password": "$2a$10$j2oFSPKZyy4BJjMt/8gWRe9Lt3bpOHEooZMK2CniR2ksBDcg5mG1W",
-      "phone_no": "1234567890",
-      "name": "ARJUN",
-      "role": "12345Aa*",
-      "id": 9
-    },
-    {
-      "email": "VISHAL@GMAIL.COM",
-      "password": "$2a$10$2IZxQKruVOsoTHbSOcLy2.lhKSRmlYajAhF0T/ubD70SC2uURm9fq",
-      "phone_no": "4567891234",
-      "name": "VISHAL",
-      "role": "12345Aa*",
-      "id": 10
-    },
-    {
-      "email": "NARENDRA@GMAIL.COM",
-      "password": "$2a$10$iL1ziyhfuQOkCEOajY9D5OaTk3fkfOghzUf/mF8XJdvNPFArh85L2",
-      "phone_no": "1234567891",
-      "name": "NARENDRA",
-      "role": "45678Aa*",
-      "id": 11
-    },
-    {
-      "email": "DARSHAN@GMAIL.COM",
-      "password": "$2a$10$oAa6AGjtpIZvfHfJLS.6V.Gbqv5PeDuKdTTLBkJNcV8mdSlX7kreW",
-      "phone_no": "1234567891",
-      "name": "DARSHAN",
-      "role": "12345Aa*",
-      "id": 12
-    },
-    {
-      "email": "AMIT@GMAIL.COM",
-      "password": "$2a$10$jdadW988UxIqRpvNo22zrekkPRV6unPbt5tSO9pj72I.JsFoCOMsG",
-      "phone_no": "1234567891",
-      "name": "AMIT",
-      "role": "PUBLIC",
-      "id": 13
     }
   ],
   "publicUsers": [
     {
-      "phone_no": "9111564120",
-      "name": "ARVIND JAIN",
-      "email": "ARVIND@GMAIL.COM",
-      "id": 1
-    },
-    {
-      "phone_no": "6260109311",
-      "name": "ROHAN AGRAWAL",
-      "email": "ROHAN.AGRAWAL@GMAIL.COM",
-      "id": 2
-    },
-    {
-      "phone_no": "4567891234",
-      "name": "AKSHAT BHAWSAR",
-      "email": "AKSHAT.BHAWSAR@GMAIL.COM",
-      "id": 3
-    },
-    {
-      "phone_no": "4567891236",
-      "name": "SOMIL",
-      "email": "SOMIL12@GMAIL.COM",
-      "id": 4
-    },
-    {
       "phone_no": "1234567891",
-      "name": "AJAY MANAN",
-      "email": "AJAY@GMAIL.COM",
-      "id": 5
-    },
-    {
-      "phone_no": "4567812301",
-      "name": "ABINAV",
-      "email": "ABHINAV@GMAIL.COM",
+      "name": "SOMIL SHARMA",
+      "email": "SOMIL@GMAIL.COM",
       "role": "PUBLIC",
-      "id": 6
+      "id": 1
     }
   ],
   "books": [
     {
-      "title": "HAPPY",
-      "author": "ROHAN",
-      "description": "HAPPY WORLD!",
-      "genre": "FICTION",
-      "publicationYear": "2020",
-      "isbn": "978-93-560-6066-3",
+      "title": "DATA STRUCTURES & ALGORITHMS",
+      "author": "NARASIMBHA KARUMANCHI",
+      "description": "BEST BOOK LEARNING ALOGRITHMS, THIS BOOK IS WIRTTEN BY IIT BOMBAY GRADUATE.",
+      "genre": "OTHER",
+      "publicationYear": "2000",
+      "isbn": "978-93-560-6066-1",
       "id": 1
-    },
-    {
-      "title": "LIE",
-      "author": "RAJ",
-      "description": "HELLO",
-      "genre": "NOVEL",
-      "publicationYear": "2018",
-      "isbn": "978-93-560-6066-2",
-      "id": 2
-    },
-    {
-      "title": "LAZY",
-      "author": "ROHAN",
-      "description": "LIFE IS LAZY",
-      "genre": "FICTION",
-      "publicationYear": "2017",
-      "isbn": "978-93-560-6066-4",
-      "id": 3
-    },
-    {
-      "title": "JAVA",
-      "author": "ROHAN",
-      "description": "JAVA",
-      "genre": "FICTION",
-      "publicationYear": "2023",
-      "isbn": "978-63-560-6066-1",
-      "id": 4
-    },
-    {
-      "title": "HAPPY",
-      "author": "ROHAN",
-      "description": "HAPPINESS",
-      "genre": "FICTION",
-      "publicationYear": "2024",
-      "isbn": "456-45678-45-123-4",
-      "id": 5
     }
   ],
   "borrow": [
     {
       "book": {
-        "title": "LAZY",
-        "author": "ROHAN",
-        "description": "LIFE IS LAZY",
-        "genre": "FICTION",
-        "isbn": "978-93-560-6066-4",
-        "id": 3
+        "title": "DATA STRUCTURES & ALGORITHMS",
+        "author": "NARASIMBHA KARUMANCHI",
+        "description": "BEST BOOK LEARNING ALOGRITHMS, THIS BOOK IS WIRTTEN BY IIT BOMBAY GRADUATE.",
+        "genre": "OTHER",
+        "publicationYear": "2000",
+        "isbn": "978-93-560-6066-1",
+        "id": 1
       },
       "user": {
-        "phone_no": "9111564120",
-        "name": "ARVIND",
-        "email": "ARVIND@GMAIL.COM",
+        "phone_no": "1234567891",
+        "name": "SOMIL SHARMA",
+        "email": "SOMIL@GMAIL.COM",
         "password": null,
         "id": 1
       },
-      "issueDate": "2023-12-20T18:30:00.000Z",
-      "returnDate": "2023-12-30T18:30:00.000Z",
+      "issueDate": "2024-01-06T11:26:45.254Z",
+      "returnDate": "2024-01-16T11:26:45.254Z",
+      "status": "APPROVED",
       "id": 1
-    },
-    {
-      "book": {
-        "title": "JAVA",
-        "author": "ROHAN",
-        "description": "JAVA",
-        "genre": "NOVEL",
-        "isbn": "978-63-560-6066-1",
-        "id": 4
-      },
-      "user": {
-        "phone_no": "6260109310",
-        "name": "ROHAN",
-        "email": "ROHAN.AGRAWAL@GMAIL.COM",
-        "password": null,
-        "id": 2
-      },
-      "issueDate": "2023-12-27T18:30:00.000Z",
-      "returnDate": "2023-12-18T18:30:00.000Z",
-      "id": 2
-    },
-    {
-      "book": {
-        "title": "JAVA",
-        "author": "ROHAN",
-        "description": "JAVA",
-        "genre": "NOVEL",
-        "isbn": "978-63-560-6066-1",
-        "id": 4
-      },
-      "user": {
-        "phone_no": "6260109311",
-        "name": "ROHAN",
-        "email": "ROHAN.AGRAWAL@GMAIL.COM",
-        "password": null,
-        "id": 2
-      },
-      "issueDate": "2023-12-02T18:30:00.000Z",
-      "returnDate": "2024-01-17T18:30:00.000Z",
-      "id": 3
     }
   ]
 }

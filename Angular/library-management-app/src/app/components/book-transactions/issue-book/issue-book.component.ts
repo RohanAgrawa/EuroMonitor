@@ -38,7 +38,7 @@ export class IssueBookComponent {
       this.user = new UserModel(data.name, data.phone_no,  data.email, data.userType, null, data.id);
       this.bookService.getBook(+bookId).subscribe((data) => {
         this.book = new BookModel(data.title, data.author, data.description, data.genre, data.year, data.isbn, +data.id);
-        bookTransaction = new BookTransactionModel(this.book, this.user, new Date(this.bookIssueForm.value.issueDate), new Date(this.bookIssueForm.value.returnDate));
+        bookTransaction = new BookTransactionModel(this.book, this.user, new Date(this.bookIssueForm.value.issueDate), new Date(this.bookIssueForm.value.returnDate), 'APPROVED');
         this.addBookTransaction(bookTransaction);
       }, err => {
         this.isSubmitted = true;

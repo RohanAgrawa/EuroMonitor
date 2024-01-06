@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,9 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicComponent } from './components/public/public.component';
 import { publicAuthenticationService } from './services/public-authentication.service';
-import { BooksComponent } from './components/user-utilities/books/books.component';
 import { UserDashboardComponent } from './components/user-utilities/user-dashboard/user-dashboard.component';
-import { BorrowedStatusComponent } from './components/user-utilities/borrowed-status/borrowed-status.component';
 
 
 @NgModule({
@@ -24,7 +22,7 @@ import { BorrowedStatusComponent } from './components/user-utilities/borrowed-st
     DashBoardComponent,
     AuthenticationComponent,
     PublicComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,
