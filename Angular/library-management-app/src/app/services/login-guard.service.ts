@@ -21,5 +21,4 @@ export class LoginGuardService implements CanActivate{
             return this.router.createUrlTree(['dashboard', 'books']);
         }));
     }
-
 }

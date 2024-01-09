@@ -141,7 +141,7 @@ describe('BookTransactionService', () => {
             expect(response.length).toEqual(3);
         });
 
-        const req = httpTestingController.expectOne('http://localhost:3000/borrow');
+        const req = httpTestingController.expectOne('http://localhost:3000/borrow?&status=APPROVED');
         expect(req.request.method).toEqual('GET');
         expect(req.request.headers).toBeTruthy();
 

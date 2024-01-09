@@ -14,8 +14,14 @@
       "phone_no": "1234567891",
       "name": "SOMIL SHARMA",
       "email": "SOMIL@GMAIL.COM",
-      "role": "PUBLIC",
       "id": 1
+    },
+    {
+      "phone_no": "1234567891",
+      "name": "AKSHAT JAIN",
+      "email": "AKSHAT@GMAIL.COM",
+      "role": "PUBLIC",
+      "id": 2
     }
   ],
   "books": [
@@ -27,6 +33,24 @@
       "publicationYear": "2000",
       "isbn": "978-93-560-6066-1",
       "id": 1
+    },
+    {
+      "title": "JAVA",
+      "author": "SOMIL",
+      "description": "JAVA BOOK",
+      "genre": "NOVEL",
+      "publicationYear": "2024",
+      "isbn": "978-93-560-6066-1",
+      "id": 2
+    },
+    {
+      "title": "THE INTELLEGNET INVESTOR",
+      "author": "WARREN BUFFET",
+      "description": "ADVICE ON STOCK MARKET",
+      "genre": "FICTION",
+      "publicationYear": "2000",
+      "isbn": "978-93-560-6066-1",
+      "id": 3
     }
   ],
   "borrow": [
@@ -51,6 +75,28 @@
       "returnDate": "2024-01-16T11:26:45.254Z",
       "status": "APPROVED",
       "id": 1
+    },
+    {
+      "book": {
+        "title": "JAVA",
+        "author": "SOMIL",
+        "description": "JAVA BOOK",
+        "genre": "OTHER",
+        "publicationYear": "2024",
+        "isbn": "978-93-560-6066-1",
+        "id": 2
+      },
+      "user": {
+        "phone_no": "1234567891",
+        "name": "SOMIL SHARMA",
+        "email": "SOMIL@GMAIL.COM",
+        "password": null,
+        "id": 1
+      },
+      "issueDate": "2024-01-07T09:32:34.282Z",
+      "returnDate": "2024-01-17T09:32:34.282Z",
+      "status": "APPROVED",
+      "id": 2
     }
   ]
 }

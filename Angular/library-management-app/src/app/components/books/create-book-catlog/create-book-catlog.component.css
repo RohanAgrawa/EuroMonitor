@@ -2,16 +2,26 @@
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 40px;
+      /* flex-wrap: wrap; */
   }
   
   .example-full-width {
-    width: 100%;
+    width: 300px;
+    /* flex: 0 0 calc(50% - 10px);
+      margin-right: 10px;
+      margin-bottom: 10px; */
   }
   
   .container{
     margin-top: 20px;
-    margin-left: 500px;
+    margin-left: 400px;
     padding-bottom: 200px;
+    align-items: center;
+    justify-content: center;
   }
   
   .error{
@@ -20,14 +30,15 @@
     margin-bottom: 3px;
   }
   
-  mat-card.bookCatlogForm {
-    width: 500px;
+  .bookCatlogForm {
+    width:  67%;
     background-color: lightgray;
+    
   }
   
   h3{
     font-weight: bold; 
-    margin-left: 200px;
+    margin-left: 280px;
     font-size: 18px;
     color: brown;
   }
@@ -37,6 +48,4 @@
     background-color: lemonchiffon;
   }
 
-  mat-form-field{
-    background-color: transparent;
-  }
+

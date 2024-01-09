@@ -38,7 +38,7 @@ export class UserDetailsComponent implements OnInit{
 
     this.route.queryParams.subscribe(params => {
       this.userType = params['userType'];
-        this.getUsers();
+      this.getUsers();
     });
   }
 

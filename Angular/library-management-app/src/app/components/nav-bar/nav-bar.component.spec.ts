@@ -6,25 +6,29 @@ import { UserResponseModel } from '../../models/userResponse.model';
 import { MaterialModule } from '../../modules/material/material.module';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { publicAuthenticationService } from '../../services/public-authentication.service';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
   let fixture: ComponentFixture<NavBarComponent>;
-    let authServiceSpy: any;
+  let authServiceSpy: any;
+  let publicAuthServiceSpy: any;
     let el: DebugElement;
 
   beforeEach(waitForAsync(() => {
     const spy = jasmine.createSpyObj('AuthenticationService', ['logout']);
+    const publicSpy = jasmine.createSpyObj('publicAuthenticationService', ['logout']);
 
     TestBed.configureTestingModule({
         declarations: [NavBarComponent],
         imports: [MaterialModule],
-      providers: [{ provide: AuthenticationService, useValue: spy }],
+      providers: [{ provide: AuthenticationService, useValue: spy }, { provide: publicAuthenticationService, useValue: publicSpy }],
       schemas : [NO_ERRORS_SCHEMA]
     }).compileComponents().then(() => {
         fixture = TestBed.createComponent(NavBarComponent);
         component = fixture.componentInstance;
-        authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+      authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+      publicAuthServiceSpy = TestBed.inject(publicAuthenticationService) as jasmine.SpyObj<publicAuthenticationService>;
         el = fixture.debugElement;
     });
   }));
@@ -41,14 +45,22 @@ describe('NavBarComponent', () => {
     
 
     Promise.resolve().then(() => {
-      authServiceSpy.user  = of(mockUser);
-    });
+      authServiceSpy.user = of(mockUser);
+      publicAuthServiceSpy.publicUser = of(mockUser);
+
+      return true;
+    }).then((value) => {
+      if (value) {
+        component.checkUser();
+        return true;
+      }
+      return false;
+    }).then((value) => { if(!value){component.checkAdmin()} });
 
     
 
     flushMicrotasks();
     fixture.detectChanges();
-   
     expect(component.isLoggedIn).toBeTrue();
     const active = el.query(By.css('.active'));
     expect(active).toBeNull();
@@ -58,10 +70,11 @@ describe('NavBarComponent', () => {
   it('should initialize isLoggedIn to false when user is not logged in', fakeAsync(() => {
 
       Promise.resolve().then(() => {
-        authServiceSpy.user  = of(null);
+        authServiceSpy.user = of(null);
+        publicAuthServiceSpy.publicUser = of(null);
       });
       flushMicrotasks();
-      fixture.detectChanges();
+    fixture.detectChanges();
       expect(component.isLoggedIn).toBeFalse();
   }));
 
@@ -69,6 +82,7 @@ describe('NavBarComponent', () => {
     component.onLogout();
 
     expect(authServiceSpy.logout).toHaveBeenCalled();
+    expect(publicAuthServiceSpy.logout).toHaveBeenCalled();
         
   });
     

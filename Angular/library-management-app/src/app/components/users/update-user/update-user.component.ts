@@ -27,11 +27,16 @@ export class UpdateUserComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.userService.getUser(+this.id).subscribe((data) => {
-        this.userForm.setValue({
-          username: data.name,
-          email: data.email,
-          mobile: data.phone_no,
-        });
+        
+        if (this.userForm) {
+          this.userForm.setValue({
+            username: data.name,
+            email: data.email,
+            mobile: data.phone_no,
+            
+          });
+        }
+        
       });
     });
   }

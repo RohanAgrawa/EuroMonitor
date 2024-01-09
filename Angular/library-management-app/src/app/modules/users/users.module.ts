@@ -21,7 +21,8 @@ import { UserService } from '../../services/user.service';
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    
   ],
   providers : [UserService]
 })
