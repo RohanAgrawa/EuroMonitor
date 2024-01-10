@@ -97,6 +97,28 @@
       "returnDate": "2024-01-17T09:32:34.282Z",
       "status": "APPROVED",
       "id": 2
+    },
+    {
+      "book": {
+        "title": "THE INTELLEGNET INVESTOR",
+        "author": "WARREN BUFFET",
+        "description": "ADVICE ON STOCK MARKET",
+        "genre": "FICTION",
+        "publicationYear": "2000",
+        "isbn": "978-93-560-6066-1",
+        "id": 3
+      },
+      "user": {
+        "phone_no": "1234567891",
+        "name": "AKSHAT JAIN",
+        "email": "AKSHAT@GMAIL.COM",
+        "password": null,
+        "id": 2
+      },
+      "issueDate": "2024-01-10T08:20:58.158Z",
+      "returnDate": "2024-01-20T08:20:58.158Z",
+      "status": "APPROVED",
+      "id": 3
     }
   ]
 }

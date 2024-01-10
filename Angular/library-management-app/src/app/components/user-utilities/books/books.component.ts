@@ -27,9 +27,7 @@ export class BooksComponent {
   constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
 
   public ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.getBooks();
-    });
+    this.getBooks();
   }
 
   private getBooks(): void {
@@ -41,10 +39,16 @@ export class BooksComponent {
   }
 
   public onBorrow(book: any): void{
-    console.log(book)
+    
     
     const bookModel = new BookModel(book.title, book.author, book.description, book.genre, book.publicationYear, book.isbn, +book.id);
     const user = JSON.parse(localStorage.getItem('publicData'));
+    
+    if (user === null) {
+      return;
+    }
+  
+   
     const userModel = new UserModel(user[0].name, user[0].phone_no, user[0].email, user[0].userType, null, user[0].id);
 
     const returnDate = new Date();
@@ -53,7 +57,7 @@ export class BooksComponent {
     const borrowedBook = new BookTransactionModel(bookModel, userModel, new Date(), returnDate, 'PENDING');
 
     this.requestBook.requestBook(borrowedBook).subscribe((data) => {
-      console.log(data);
+      
     }, (error) => { this.openDialog();});
   }
 
