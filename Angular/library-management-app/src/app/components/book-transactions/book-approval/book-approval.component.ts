@@ -6,6 +6,7 @@ import { BookTransactionResponseModel } from '../../../models/book-transaction-r
 import { BookTransactionService } from '../../../services/book-transaction.service';
 import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 import { BookTransactionModel } from '../../../models/book-transaction.model';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-book-approval',
@@ -20,7 +21,7 @@ export class BookApprovalComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bookTransactionService: BookTransactionService, private dialog: MatDialog) { }
+  constructor(private bookTransactionService: BookTransactionService, private dialog: MatDialog, private userService : UserService) { }
   
   public ngOnInit(): void {
       this.getRequestedBooks();
@@ -32,7 +33,8 @@ export class BookApprovalComponent implements OnInit{
       const bookTransactions: BookTransactionResponseModel[] = [];
 
       for (const bookTransaction of data) {
-        bookTransactions.push(new BookTransactionResponseModel(bookTransaction.id, +bookTransaction.book.id, +bookTransaction.user.id, new Date(bookTransaction.issueDate), new Date(bookTransaction.returnDate), bookTransaction.user.name, bookTransaction.book.title, bookTransaction.user.email));
+        bookTransactions.push(new BookTransactionResponseModel(bookTransaction.id, +bookTransaction.book.id, +bookTransaction.user.id, new Date(bookTransaction.issueDate), new Date(bookTransaction.returnDate), bookTransaction.user.name, bookTransaction.book.title, bookTransaction.user.email, bookTransaction.status,
+          +bookTransaction.user.bookCount));
       }
 
       this.dataSource = new MatTableDataSource<BookTransactionResponseModel>(bookTransactions);
@@ -55,6 +57,11 @@ export class BookApprovalComponent implements OnInit{
 
   public onApproveBook(bookTransaction: any): void {
     
+    this.userService.getUser(+bookTransaction.userId).subscribe((response) => {
+      this.userService.updateBookCount(+bookTransaction.userId, (response.bookCount) + 1).subscribe((response) => {
+        console.log(response);
+      });
+    });
     this.bookTransactionService.approveBook(bookTransaction.borrowId).subscribe((response) => {
       this.getRequestedBooks();
     }, (error) => { this.openDialog(); });

@@ -46,8 +46,7 @@ export class NavBarComponent {
   }
 
   public checkAdmin(): void {
-    if (this.authService.user)
-    {
+    
       this.authService.user.subscribe((user) => {
        
         if (user) {
@@ -57,6 +56,6 @@ export class NavBarComponent {
           this.isLoggedIn = false;
         }
       });
-    }
+    
   }
 }

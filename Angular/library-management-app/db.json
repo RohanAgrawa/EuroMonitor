@@ -7,21 +7,32 @@
       "name": "ROHAN",
       "id": 1,
       "role": "ADMIN"
+    },
+    {
+      "email": "SANSKAR@GMAIL.COM",
+      "password": "$2a$10$.3.7Qb0N1ckdQM99c1JKOOEBuH999ryoMDr1wqCaEGI/LEkH4Ek.u",
+      "phone_no": "1234567891",
+      "name": "SANSKAR",
+      "role": "12345Aa*",
+      "id": 2
+    },
+    {
+      "email": "ARVIND@GMAIL.COM",
+      "password": "$2a$10$2W5VQEYaXyXfr1W9oH1DrOJK0V9GBd/3LltveuTzs.kZ6aoNpIhhy",
+      "phone_no": "1234567891",
+      "name": "ARVIND",
+      "role": "12345Aa*",
+      "id": 3
     }
   ],
   "publicUsers": [
     {
       "phone_no": "1234567891",
-      "name": "SOMIL SHARMA",
-      "email": "SOMIL@GMAIL.COM",
-      "id": 1
-    },
-    {
-      "phone_no": "1234567891",
-      "name": "AKSHAT JAIN",
+      "name": "AKSHAT",
       "email": "AKSHAT@GMAIL.COM",
       "role": "PUBLIC",
-      "id": 2
+      "bookCount": 4,
+      "id": 1
     }
   ],
   "books": [
@@ -66,13 +77,14 @@
       },
       "user": {
         "phone_no": "1234567891",
-        "name": "SOMIL SHARMA",
-        "email": "SOMIL@GMAIL.COM",
+        "name": "AKSHAT",
+        "email": "AKSHAT@GMAIL.COM",
         "password": null,
-        "id": 1
+        "id": 1,
+        "bookCount": 0
       },
-      "issueDate": "2024-01-06T11:26:45.254Z",
-      "returnDate": "2024-01-16T11:26:45.254Z",
+      "issueDate": "2024-01-11T16:27:25.079Z",
+      "returnDate": "2024-01-21T16:27:25.079Z",
       "status": "APPROVED",
       "id": 1
     },
@@ -81,20 +93,21 @@
         "title": "JAVA",
         "author": "SOMIL",
         "description": "JAVA BOOK",
-        "genre": "OTHER",
+        "genre": "NOVEL",
         "publicationYear": "2024",
         "isbn": "978-93-560-6066-1",
         "id": 2
       },
       "user": {
         "phone_no": "1234567891",
-        "name": "SOMIL SHARMA",
-        "email": "SOMIL@GMAIL.COM",
+        "name": "AKSHAT",
+        "email": "AKSHAT@GMAIL.COM",
         "password": null,
-        "id": 1
+        "id": 1,
+        "bookCount": 0
       },
-      "issueDate": "2024-01-07T09:32:34.282Z",
-      "returnDate": "2024-01-17T09:32:34.282Z",
+      "issueDate": "2024-01-11T16:27:25.538Z",
+      "returnDate": "2024-01-21T16:27:25.538Z",
       "status": "APPROVED",
       "id": 2
     },
@@ -110,13 +123,14 @@
       },
       "user": {
         "phone_no": "1234567891",
-        "name": "AKSHAT JAIN",
+        "name": "AKSHAT",
         "email": "AKSHAT@GMAIL.COM",
         "password": null,
-        "id": 2
+        "id": 1,
+        "bookCount": 0
       },
-      "issueDate": "2024-01-10T08:20:58.158Z",
-      "returnDate": "2024-01-20T08:20:58.158Z",
+      "issueDate": "2024-01-11T16:27:25.950Z",
+      "returnDate": "2024-01-21T16:27:25.950Z",
       "status": "APPROVED",
       "id": 3
     }

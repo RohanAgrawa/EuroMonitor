@@ -53,4 +53,10 @@ export class UserService{
       headers : {'Authorization' : `Bearer ${this.token}`}
     }).pipe(catchError(this.handleError));
   }
+
+  public updateBookCount(id: number, count: number) {
+    return this.http.patch<any>(`${this.userUrl}/${id}`, {bookCount : count}, {
+      headers : {'Authorization' : `Bearer ${this.token}`}
+    }).pipe(catchError(this.handleError));
+  }
 }
