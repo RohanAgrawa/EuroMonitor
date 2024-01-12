@@ -29,17 +29,6 @@
       </form>
     </mat-card-content>
   </mat-card>
-  <div style="margin-top: 10px;" *ngIf="isSubmitted">
-    <mat-card class="response">
-      <mat-card-content *ngIf="!isSubmittedError">
-        <h2 style="margin-right: 100px; color: green; margin-left: 100px;">User added successfully!</h2>
-        <p>Id : {{publicUserId}}</p>
-      </mat-card-content>
-      <mat-card-content *ngIf="isSubmittedError">
-        <h2 style="margin-right: 100px; margin-left: 100px;">Something went wrong...!</h2>
-      </mat-card-content>
-    </mat-card>
-  </div>
 </div>
 
 

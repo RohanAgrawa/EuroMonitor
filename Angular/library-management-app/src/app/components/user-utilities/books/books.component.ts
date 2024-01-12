@@ -10,10 +10,11 @@ import { RequestBookService } from '../../../services/request-book.service';
 import { UserModel } from '../../../models/user.model';
 import { BookTransactionModel } from '../../../models/book-transaction.model';
 
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+  styleUrl: './books.component.css',
 })
 export class BooksComponent {
   public displayedColumns: string[] = ['id', 'title', 'author', 'publicationYear', 'genre', 'isbn', 'borrow'];
@@ -21,7 +22,7 @@ export class BooksComponent {
   public dataSource: MatTableDataSource<BookModel>;
 
   public books: BookModel[];
-
+  public bookCount: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
@@ -38,7 +39,7 @@ export class BooksComponent {
     }, (error) => { this.openDialog();});
   }
 
-  public onBorrow(book: any): void{
+  public async onBorrow(book: any): Promise<any>{
     
     
     const bookModel = new BookModel(book.title, book.author, book.description, book.genre, book.publicationYear, book.isbn, +book.id);
@@ -47,18 +48,28 @@ export class BooksComponent {
     if (user === null) {
       return;
     }
-  
-   
-    const userModel = new UserModel(user[0].name, user[0].phone_no, user[0].email, user[0].userType, null, user[0].id);
     
-    const returnDate = new Date();
-    returnDate.setDate(returnDate.getDate() + 10);
-    
-    const borrowedBook = new BookTransactionModel(bookModel, userModel, new Date(), returnDate, 'PENDING');
+    this.requestBook.getBorrowedBooks(user[0].id).subscribe((resp) => {
 
-    this.requestBook.requestBook(borrowedBook).subscribe((data) => {
+      if (resp.length < 3)
+      {
+        this.bookCount = false;
+        const userModel = new UserModel(user[0].name, user[0].phone_no, user[0].email, user[0].userType, null, user[0].id);
+    
+        const returnDate = new Date();
+        returnDate.setDate(returnDate.getDate() + 10);
+    
+        const borrowedBook = new BookTransactionModel(bookModel, userModel, new Date(), returnDate, 'PENDING');
+
+        this.requestBook.requestBook(borrowedBook).subscribe((data) => {
       
-    }, (error) => { this.openDialog();});
+        }, (error) => { this.openDialog();});
+      }
+      else {
+        this.bookCount = true;
+        console.log("Limit is greater than 3")
+      }
+    });
   }
 
   public applyFilter(event: Event): void {
@@ -69,5 +80,9 @@ export class BooksComponent {
 
   private openDialog() {
     const dialogRef = this.dialog.open(DialogContentComponent);
+  }
+
+  public onClose(): void{
+    this.bookCount = false;
   }
 }

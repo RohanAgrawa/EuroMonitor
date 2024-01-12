@@ -21,3 +21,8 @@ input {
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+mat-card{
+  background-color: lightpink;
+  
+}

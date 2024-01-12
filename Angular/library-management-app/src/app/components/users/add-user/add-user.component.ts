@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, NgForm} from "@angular/forms";
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { query } from '@angular/animations';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-add-user',
@@ -19,7 +22,7 @@ export class AddUserComponent implements OnInit{
 
   public userRoles = [{key : 'Admin', value : 'ADMIN'},{ key : 'Public', value : 'PUBLIC'}];
 
-  constructor(private userService : UserService) {
+  constructor(private userService : UserService, private routes : ActivatedRoute, private route : Router) {
   }
 
   ngOnInit() {
@@ -39,6 +42,7 @@ export class AddUserComponent implements OnInit{
       this.isSubmittedError = false;
       this.publicUserId = userData.id;
       this.userForm.resetForm();
+      this.route.navigate(['/dashboard', 'users'], { queryParams: { userType: 'public'}})
     }, (err) => {
       this.isSubmittedError = true;
     });

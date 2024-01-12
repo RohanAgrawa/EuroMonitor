@@ -27,7 +27,7 @@ export class BorrowedStatusComponent implements OnInit{
   public getBorrowedBooks(): void {
     const user = JSON.parse(localStorage.getItem('publicData'));
     this.requestBookService.getBorrowedBooks(user[0].id).subscribe((data) => {
-      console.log(data);
+     
       const bookTransactions: BookTransactionResponseModel[] = [];
 
       for (const bookTransaction of data) {

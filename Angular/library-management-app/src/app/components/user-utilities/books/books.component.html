@@ -1,5 +1,19 @@
-<div style="margin-left: 900px; margin-top: 20px;">
+<div *ngIf="bookCount" style="width: 30%; margin-left: 65%;">
+  <button mat-icon-button type="button" (click)="onClose()" style="margin-left: 90%;">
+    <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+  </button>
+</div>
+<div style="margin-left: 900px; margin-top: 20px; display: flex;">
+  <div>
     <input type="text" matInput (input)="applyFilter($event)" placeholder="Filter book by Title/Author/ISBN/Year/Genre">
+  </div>   
+  <div *ngIf= "bookCount">
+    <mat-card >
+      <mat-card-content style="color: darkslategrey;">
+        Three Books are allowed for Borrow 
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
 <div class="container">
