@@ -6,10 +6,10 @@ import { AddUserComponent } from '../../components/users/add-user/add-user.compo
 const routes: Routes = [
     {
         path: 'users', component: UserDetailsComponent, title: 'User Details', children: [
-          { path: ':id/update', component: UpdateUserComponent, title: 'Update User' },
+        { path: ':id/update', component: UpdateUserComponent, title: 'Update User' },
+        { path: 'addUser', component: AddUserComponent, title: 'Add User' }
         ]
     },
-    { path: 'add-user/public', component: AddUserComponent, title: 'Add User' },
 ];
 
 @NgModule({

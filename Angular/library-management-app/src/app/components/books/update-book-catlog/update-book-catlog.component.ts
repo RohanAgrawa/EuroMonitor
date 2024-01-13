@@ -30,7 +30,7 @@ export class UpdateBookCatlogComponent implements OnInit{
     
   }
   ngOnInit(): void {
-
+    
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.bookService.getBook(+this.id).subscribe((data) => {

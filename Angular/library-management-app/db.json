@@ -39,7 +39,7 @@
       "name": "SANSKAR",
       "email": "SANSKAR@GMAIL.COM",
       "role": "PUBLIC",
-      "bookCount": 1,
+      "bookCount": 3,
       "id": 2
     },
     {
@@ -57,23 +57,22 @@
       "role": "PUBLIC",
       "bookCount": 0,
       "id": 4
+    },
+    {
+      "phone_no": "1234567891",
+      "name": "ROHIT",
+      "email": "ROHIT@GMAIL.COM",
+      "role": "PUBLIC",
+      "bookCount": 0,
+      "id": 5
     }
   ],
   "books": [
     {
-      "title": "DATA STRUCTURES & ALGORITHMS",
-      "author": "NARASIMBHA KARUMANCHI",
-      "description": "BEST BOOK LEARNING ALOGRITHMS, THIS BOOK IS WIRTTEN BY IIT BOMBAY GRADUATE.",
-      "genre": "OTHER",
-      "publicationYear": "2000",
-      "isbn": "978-93-560-6066-1",
-      "id": 1
-    },
-    {
       "title": "JAVA",
       "author": "SOMIL",
       "description": "JAVA BOOK",
-      "genre": "NOVEL",
+      "genre": "FICTION",
       "publicationYear": "2024",
       "isbn": "978-93-560-6066-1",
       "id": 2
@@ -86,6 +85,24 @@
       "publicationYear": "2000",
       "isbn": "978-93-560-6066-1",
       "id": 3
+    },
+    {
+      "title": "PHYSICS",
+      "author": "HC VERMA",
+      "description": "JEE",
+      "genre": "OTHER",
+      "publicationYear": "2000",
+      "isbn": "978-93-560-6066-1",
+      "id": 4
+    },
+    {
+      "title": "DSA",
+      "author": "ROHAN",
+      "description": "DSA",
+      "genre": "OTHER",
+      "publicationYear": "2000",
+      "isbn": "978-93-560-6066-1",
+      "id": 5
     }
   ],
   "borrow": [
@@ -180,6 +197,52 @@
       "returnDate": "2024-01-22T10:44:34.127Z",
       "status": "APPROVED",
       "id": 5
+    },
+    {
+      "book": {
+        "title": "THE INTELLEGNET INVESTOR",
+        "author": "WARREN BUFFET",
+        "description": "ADVICE ON STOCK MARKET",
+        "genre": "FICTION",
+        "publicationYear": "2000",
+        "isbn": "978-93-560-6066-1",
+        "id": 3
+      },
+      "user": {
+        "phone_no": "1234567891",
+        "name": "SANSKAR",
+        "email": "SANSKAR@GMAIL.COM",
+        "password": null,
+        "id": 2,
+        "bookCount": 0
+      },
+      "issueDate": "2024-01-13T14:02:00.614Z",
+      "returnDate": "2024-01-23T14:02:00.614Z",
+      "status": "APPROVED",
+      "id": 6
+    },
+    {
+      "book": {
+        "title": "PHYSICS",
+        "author": "HC VERMA",
+        "description": "JEE",
+        "genre": "OTHER",
+        "publicationYear": "2000",
+        "isbn": "978-93-560-6066-1",
+        "id": 4
+      },
+      "user": {
+        "phone_no": "1234567891",
+        "name": "SANSKAR",
+        "email": "SANSKAR@GMAIL.COM",
+        "password": null,
+        "id": 2,
+        "bookCount": 0
+      },
+      "issueDate": "2024-01-13T14:02:08.425Z",
+      "returnDate": "2024-01-23T14:02:08.425Z",
+      "status": "APPROVED",
+      "id": 7
     }
   ]
 }

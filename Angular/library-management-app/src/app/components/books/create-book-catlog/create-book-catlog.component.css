@@ -1,7 +1,7 @@
 .example-form {
     min-width: 150px;
     max-width: 500px;
-    width: 100%;
+    width: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -10,16 +10,17 @@
   }
   
   .example-full-width {
-    width: 300px;
+    width: 200px;
     /* flex: 0 0 calc(50% - 10px);
       margin-right: 10px;
       margin-bottom: 10px; */
   }
   
   .container{
-    margin-top: 20px;
-    margin-left: 400px;
-    padding-bottom: 200px;
+    margin-top: 25px;
+    padding-bottom: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
     align-items: center;
     justify-content: center;
   }
@@ -30,22 +31,16 @@
     margin-bottom: 3px;
   }
   
-  .bookCatlogForm {
-    width:  67%;
+  mat-card{
     background-color: lightgray;
-    
   }
   
   h3{
     font-weight: bold; 
-    margin-left: 280px;
     font-size: 18px;
-    color: brown;
+    color: rgb(99, 5, 5);
+    align-self:center;
   }
   
-  mat-card.response{
-    width: 500px;
-    background-color: lemonchiffon;
-  }
-
+  
 

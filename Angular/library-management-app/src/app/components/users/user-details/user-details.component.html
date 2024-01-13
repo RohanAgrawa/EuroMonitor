@@ -1,3 +1,9 @@
+<div style="margin-left: 700px; margin-top: 20px;">
+  <input type="text" matInput (input)="applyFilter($event)" placeholder="Search User by Name/Email/Phone No">
+  <button mat-mini-fab extended color="accent" [routerLink]="['addUser']"
+  style="width: 2.5em; height: 2.5em; margin-left: 10px;"
+  ><mat-icon>add</mat-icon></button>
+</div>
 <div class="container">
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">

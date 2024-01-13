@@ -4,12 +4,6 @@
         <div>
             <button mat-button [routerLink]="['books']" routerLinkActive="activeButton">Books</button>
         </div>
-        <div style="margin-left: 70px;">
-            <button mat-button [routerLink]="['create-book']" routerLinkActive="activeButton">Add Book</button>
-        </div>
-        <div style="margin-left: 70px;" routerLinkActive="activeButton">
-            <button mat-button [routerLink]="['add-user', 'public']" routerLinkActive="activeButton">Add user</button>
-        </div>
         <div style="margin-left: 70px;" routerLinkActive="activeButton">
             <button mat-button [routerLink]="['users']" [queryParams]="{userType : 'public'}" routerLinkActive="activeButton">Users</button>
         </div>

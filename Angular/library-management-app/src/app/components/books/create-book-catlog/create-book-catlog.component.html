@@ -1,6 +1,7 @@
 <div class = "container">
-    <h3>Book Catlog Form</h3>
+    
     <mat-card class = "bookCatlogForm">
+      <h3>Book Catlog Form</h3>
       <mat-card-content>
         <form class = "example-form" (ngSubmit)="onsubmit()" #f = "ngForm">
           <mat-form-field class = "example-full-width">
@@ -41,20 +42,13 @@
             <mat-error style="padding-bottom: 5px;" class = "error" *ngIf="!description.valid && description.touched">Requires a book Description!</mat-error>
           </mat-form-field>
   
-          <div style=" margin-top: 9px; padding-top: 12px;">
-            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Create Book</button>
+          <div style="padding-top: 12px; display: flex;">
+            <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Add Book</button>
+            <button style="margin-left: 20px;" type="button" mat-raised-button color="warn" [routerLink]="['../']">Back</button>
           </div>
         </form>
       </mat-card-content>
     </mat-card>
-    <div style="margin-top: 10px;" *ngIf="isSubmitted">
-      <mat-card class="response">
-        <mat-card-content *ngIf="!isSubmittedError">
-          <h2 style="margin-right: 100px; color: green; margin-left: 100px;">Book Created successfully!</h2>
-          <p>Id : {{bookId}}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
   
   

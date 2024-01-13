@@ -1,7 +1,7 @@
 .dash-board{
     margin-top: 25px;
     margin-right: 300px;
-    margin-left: 130px;
+    margin-left: 300px;
 }
 
 .navigation{
@@ -11,6 +11,7 @@
 
 mat-toolbar{
     background-color: transparent;
+    align-items: center;
 }
 
 .activeButton{

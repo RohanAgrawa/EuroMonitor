@@ -1,5 +1,5 @@
 <div class = "container">
-  <h3>User Form</h3>
+  <h3>Add User</h3>
   <mat-card class = "userForm">
     <mat-card-content>
       <form class = "example-form" (ngSubmit)="onsubmit()" #f = "ngForm">
@@ -25,6 +25,7 @@
 
         <div style=" margin-top: 7px">
           <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Add User</button>
+          <button style="margin-left: 20px;" type="button" mat-raised-button color="warn" [routerLink]="['../']" [queryParams]="{userType : 'public'}">Back</button>
         </div>
       </form>
     </mat-card-content>

@@ -50,7 +50,11 @@ export class UserDetailsComponent implements OnInit{
     }, (error) => { this.openDialog();});
   }
 
-
+  public applyFilter(event: Event): void {
+    let filteredValue = (event.target as HTMLInputElement).value;
+    filteredValue = filteredValue.trim().toUpperCase();
+    this.dataSource.filter = filteredValue;
+  }
 
   public onDelete(user: any): void{
       this.deleteUser(user);

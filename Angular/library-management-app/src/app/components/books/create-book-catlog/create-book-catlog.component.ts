@@ -39,7 +39,7 @@ export class CreateBookCatlogComponent {
       this.bookId = data.id;
       this.bookForm.resetForm();
       this.isSubmittedError = false;
-      this.routes.navigate(['/dashboard', 'books']);
+      this.routes.navigate(['/dashboard', 'books'], { queryParams: { bookType: "Added" }, queryParamsHandling: 'merge' , fragment : this.bookId});
     }, (error) => {
       this.isSubmittedError = true;
       this.openDialog();

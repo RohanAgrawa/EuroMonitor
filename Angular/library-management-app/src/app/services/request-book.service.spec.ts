@@ -29,7 +29,7 @@ describe('RequestBookService', () => {
             expect(data).toEqual(bookTransaction);
             expect(data.book.title).toEqual("testBook");
             expect(data.user.name).toEqual("TEST");
-            expect
+            expect(data.user.phone_no).toEqual(1234567891);
         });
 
         const req = httpTestingController.expectOne('http://localhost:3000/borrow');

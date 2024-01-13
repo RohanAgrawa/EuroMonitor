@@ -1,11 +1,14 @@
 <div style="margin-left: 700px; margin-top: 20px;">
     <input type="text" matInput (input)="applyFilter($event)" placeholder="Filter book by Title/Author/ISBN/Year/Genre">
+    <button mat-mini-fab extended color="accent" [routerLink]="['addBook']"
+    style="width: 2.5em; height: 2.5em; margin-left: 10px;"
+    ><mat-icon>add</mat-icon></button>
 </div>
-
 <div class="container">
+
     <div class="mat-elevation-z8">
+      
       <table mat-table [dataSource]="dataSource">
-        
         
         <!-- Position Column -->
         <ng-container matColumnDef="id">
@@ -58,11 +61,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    
       <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                      showFirstLastButtons
                      aria-label="Select page of periodic elements">
       </mat-paginator>
+      
     </div>
     <router-outlet></router-outlet>
   </div>
