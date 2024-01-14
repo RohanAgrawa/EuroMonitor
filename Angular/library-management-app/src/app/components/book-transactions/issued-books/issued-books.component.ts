@@ -44,6 +44,7 @@ export class IssuedBooksComponent implements OnInit{
 
       this.dataSource = new MatTableDataSource<BookTransactionResponseModel>(bookTransactions);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = (data: BookTransactionResponseModel, filter: string) => {
         return this.filterPredicate(data, filter);
       }
@@ -76,5 +77,17 @@ export class IssuedBooksComponent implements OnInit{
 
   private openDialog() {
     const dialogRef = this.dialog.open(DialogContentComponent);
+  }
+
+  public announceSortChange(sortState: Sort) : void{
+
+    if (sortState.direction)
+    {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    }
+    else
+    {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

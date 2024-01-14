@@ -9,6 +9,8 @@ import { DialogContentComponent } from '../../dialog-box/dialog-content.componen
 import { RequestBookService } from '../../../services/request-book.service';
 import { UserModel } from '../../../models/user.model';
 import { BookTransactionModel } from '../../../models/book-transaction.model';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort } from '@angular/material/sort';
 
 
 @Component({
@@ -24,8 +26,9 @@ export class BooksComponent {
   public books: BookModel[];
   public bookCount: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
+  constructor(private _liveAnnouncer: LiveAnnouncer,private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
 
   public ngOnInit(): void {
     this.getBooks();
@@ -35,11 +38,23 @@ export class BooksComponent {
     this.bookService.getBooks().subscribe((data) => {
       this.books = data;
       this.dataSource = new MatTableDataSource<BookModel>(this.books);
+      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }, (error) => { this.openDialog();});
   }
 
-  public async onBorrow(book: any): Promise<any>{
+  public announceSortChange(sortState: Sort) : void{
+
+    if (sortState.direction)
+    {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    }
+    else
+    {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  public  onBorrow(book: any){
     
     
     const bookModel = new BookModel(book.title, book.author, book.description, book.genre, book.publicationYear, book.isbn, +book.id);

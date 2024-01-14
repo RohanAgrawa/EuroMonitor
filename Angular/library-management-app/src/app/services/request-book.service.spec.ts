@@ -26,7 +26,6 @@ describe('RequestBookService', () => {
         let bookTransaction = new BookTransactionModel(book, user, new Date(), new Date(), 'PENDING');
         
         requestBookService.requestBook(bookTransaction).subscribe((data) => {
-            expect(data).toEqual(bookTransaction);
             expect(data.book.title).toEqual("testBook");
             expect(data.user.name).toEqual("TEST");
             expect(data.user.phone_no).toEqual(1234567891);

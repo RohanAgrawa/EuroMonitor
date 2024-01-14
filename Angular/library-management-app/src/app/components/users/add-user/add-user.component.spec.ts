@@ -6,6 +6,9 @@ import { of, throwError } from "rxjs";
 import { UserModel } from "../../../models/user.model";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { FormControl, FormGroup, FormsModule, Validators } from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
+import { Router } from "@angular/router";
+import { UserDetailsComponent } from "../user-details/user-details.component";
 
 describe('AddUserComponent', () => {
 
@@ -20,7 +23,9 @@ describe('AddUserComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [AddUserComponent],
-            imports: [FormsModule, HttpClientTestingModule],
+            imports: [FormsModule, HttpClientTestingModule, RouterTestingModule, RouterTestingModule.withRoutes([
+                { path: 'dashboard/users', component: UserDetailsComponent }
+            ])],
             providers: [{ provide: UserService, useValue: spy }],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents().then(() => {
@@ -39,7 +44,6 @@ describe('AddUserComponent', () => {
         // Arrange
         const mockUserData = { id: '123', name: 'TEST', phone_no: 1234567890, email: 'TEST@GMAIL.COM', role: 'PUBLIC'};
         userServiceSpy.addUser.and.returnValue(of(mockUserData));
-        
         
         fixture.detectChanges();
         
@@ -71,7 +75,7 @@ describe('AddUserComponent', () => {
           
         
           fixture.detectChanges();
-          
+
           Promise.resolve().then(() => {
             if (component.userForm) {
                 component.userForm.form.setValue({
@@ -92,6 +96,7 @@ describe('AddUserComponent', () => {
         expect(component.isSubmitted).toBeTrue();
         expect(component.isSubmittedError).toBeTrue();
         expect(component.publicUserId).toBe('');
-        expect(component.userForm.resetForm).not.toHaveBeenCalled();
+          expect(component.userForm.resetForm).not.toHaveBeenCalled();
+
       }));
 });

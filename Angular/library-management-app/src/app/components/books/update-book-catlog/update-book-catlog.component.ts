@@ -34,6 +34,10 @@ export class UpdateBookCatlogComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.bookService.getBook(+this.id).subscribe((data) => {
+        
+        this.selectedGenre = data.genre;
+        this.selectedGenre = this.selectedGenre.toLowerCase();
+
         this.bookForm.setValue({
           title: data.title,
           author: data.author,
@@ -41,10 +45,7 @@ export class UpdateBookCatlogComponent implements OnInit{
           genre: data.genre,
           isbn: data.isbn,
           description: data.description,
-        });
-
-        this.selectedGenre = data.genre;
-        this.selectedGenre = this.selectedGenre.toLowerCase();
+        });        
       }, (error) => { this.openDialog();});
     });
   }

@@ -22,7 +22,7 @@ describe('BooksComponent', () => {
     beforeEach(waitForAsync(() => {
 
         const bookServiceSpy = jasmine.createSpyObj('BookService', ['getBooks']);
-        const requestBookServiceSpy = jasmine.createSpyObj('RequestBookService', ['requestBook']);
+        const requestBookServiceSpy = jasmine.createSpyObj('RequestBookService', ['requestBook', 'getBorrowedBooks']);
         const dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
 
         TestBed.configureTestingModule({
@@ -118,7 +118,8 @@ describe('BooksComponent', () => {
             "returnDate": "2024-01-16T11:26:45.254Z",
             "status": "APPROVED",
             "id": 1
-          }
+        }
+        requestBookService.getBorrowedBooks.and.returnValue(of([]));
 
        requestBookService.requestBook.and.returnValue(of(mockResponse));
 
@@ -137,6 +138,7 @@ describe('BooksComponent', () => {
         
         component.onBorrow(book);
               
+        expect(requestBookService.getBorrowedBooks).toHaveBeenCalled();
         expect(requestBookService.requestBook).toHaveBeenCalled();
 
     });

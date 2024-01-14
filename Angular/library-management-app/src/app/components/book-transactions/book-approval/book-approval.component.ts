@@ -7,6 +7,8 @@ import { BookTransactionService } from '../../../services/book-transaction.servi
 import { DialogContentComponent } from '../../dialog-box/dialog-content.component';
 import { BookTransactionModel } from '../../../models/book-transaction.model';
 import { UserService } from '../../../services/user.service';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-book-approval',
@@ -20,8 +22,9 @@ export class BookApprovalComponent implements OnInit{
   public dataSource: MatTableDataSource<BookTransactionResponseModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private bookTransactionService: BookTransactionService, private dialog: MatDialog, private userService : UserService) { }
+  constructor(private bookTransactionService: BookTransactionService, private dialog: MatDialog, private userService : UserService, private _liveAnnouncer: LiveAnnouncer) { }
   
   public ngOnInit(): void {
       this.getRequestedBooks();
@@ -39,6 +42,7 @@ export class BookApprovalComponent implements OnInit{
 
       this.dataSource = new MatTableDataSource<BookTransactionResponseModel>(bookTransactions);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = (data: BookTransactionResponseModel, filter: string) => {
         return this.filterPredicate(data, filter);
       }
@@ -53,6 +57,18 @@ export class BookApprovalComponent implements OnInit{
     let filteredValue = (event.target as HTMLInputElement).value;
     filteredValue = filteredValue.trim().toLowerCase();
     this.dataSource.filter = filteredValue;
+  }
+
+  public announceSortChange(sortState: Sort) : void{
+
+    if (sortState.direction)
+    {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    }
+    else
+    {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   public onApproveBook(bookTransaction: any): void {

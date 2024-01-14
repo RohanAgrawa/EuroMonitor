@@ -15,8 +15,7 @@ table {
 
 input {
   width: 300px;
-  padding: 10px;
-  margin: 5px;
+  height: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
