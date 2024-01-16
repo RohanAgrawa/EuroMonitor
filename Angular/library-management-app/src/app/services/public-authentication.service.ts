@@ -38,10 +38,12 @@ export class publicAuthenticationService{
         localStorage.removeItem('publicData');
     }
 
-    private handleAuthentication(response: any): void {
-          this.publicUser.next({ ...response });
-          localStorage.setItem('publicData', JSON.stringify(response));
-      }
+  private handleAuthentication(response: any): void {
+    if (response.length > 0) {
+      this.publicUser.next({ ...response });
+      localStorage.setItem('publicData', JSON.stringify(response));
+    }
+  }
     
       private handleError(errorRes: HttpErrorResponse) {
         return throwError("Something went wrong!");

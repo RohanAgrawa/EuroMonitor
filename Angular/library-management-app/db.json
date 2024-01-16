@@ -31,93 +31,160 @@
       "name": "ROHIT",
       "email": "ROHIT@GMAIL.COM",
       "role": "PUBLIC",
-      "bookCount": 2,
       "id": 1
     },
     {
-      "phone_no": "1234567891",
-      "name": "SANSKAR",
-      "email": "SANSKAR@GMAIL.COM",
+      "phone_no": "1234567892",
+      "name": "SANKSAR",
+      "email": "SANKAR@GMAIL.COM",
       "role": "PUBLIC",
-      "bookCount": 0,
       "id": 2
+    },
+    {
+      "phone_no": "1234567894",
+      "name": "SHIVAM",
+      "email": "SHIVAM@GMAIL.COM",
+      "id": 4
+    },
+    {
+      "phone_no": "1234567895",
+      "name": "RAVI",
+      "email": "RAVI@GMAIL.COM",
+      "id": 5
+    },
+    {
+      "phone_no": "1234567896",
+      "name": "ARVIND JAIN",
+      "email": "ARVIND@GMAIL.COM",
+      "id": 6
+    },
+    {
+      "phone_no": "1234567897",
+      "name": "AKSHAT",
+      "email": "AKSHAT@GMAIL.COM",
+      "role": "PUBLIC",
+      "id": 7
+    },
+    {
+      "phone_no": "1234567891",
+      "name": "SAJAL",
+      "email": "SAJAL12@GMAIL.COM",
+      "id": 8
     }
   ],
   "books": [
     {
       "title": "DSA",
-      "author": "NARSIMBHA KARUMANCHI",
-      "description": "DATA STRUCTURES",
+      "author": "NARSIMHA KARUMANCHI",
+      "description": "BEST BOOK FOR JAVA",
       "genre": "OTHER",
       "publicationYear": "2000",
       "isbn": "978-93-560-6066-1",
       "id": 1
     },
     {
-      "title": "JAVA",
-      "author": "ROHAN",
-      "description": "LEARN JAVA",
-      "genre": "NOVEL",
-      "publicationYear": "2024",
-      "isbn": "978-93-560-6066-1",
-      "id": 2
-    },
-    {
-      "title": "INTELLIGENT INVESTOR",
+      "title": "INELLIGENT INVESTOR",
       "author": "WARREN BUFFET",
       "description": "FOR STOCK MARKET",
       "genre": "OTHER",
-      "publicationYear": "2000",
-      "isbn": "978-93-560-6066-1",
+      "publicationYear": "2001",
+      "isbn": "978-93-560-6066-2",
+      "id": 2
+    },
+    {
+      "title": "JAVA",
+      "author": "JON",
+      "description": "FOR LEARNING JAVA",
+      "genre": "OTHER",
+      "publicationYear": "2005",
+      "isbn": "978-93-560-6066-5",
       "id": 3
+    },
+    {
+      "title": "ANGULAR",
+      "author": "ROBERT",
+      "description": "FOR LEARNING ANGULAR",
+      "genre": "NOVEL",
+      "publicationYear": "2020",
+      "isbn": "978-93-560-6066-3",
+      "id": 4
+    },
+    {
+      "title": "PHYSICS",
+      "author": "HC VERMA",
+      "description": "FOR LEARNING PHYSICS AND THERMODYNAMICS",
+      "genre": "OTHER",
+      "publicationYear": "1995",
+      "isbn": "978-93-560-6066-8",
+      "id": 5
     }
   ],
   "borrow": [
     {
       "book": {
-        "title": "JAVA",
-        "author": "ROHAN",
-        "description": "LEARN JAVA",
-        "genre": "NOVEL",
-        "publicationYear": "2024",
-        "isbn": "978-93-560-6066-1",
-        "id": 2
-      },
-      "user": {
-        "phone_no": "1234567891",
-        "name": "ROHIT",
-        "email": "ROHIT@GMAIL.COM",
-        "password": null,
-        "id": 1,
-        "bookCount": 0
-      },
-      "issueDate": "2024-01-14T15:22:30.485Z",
-      "returnDate": "2024-01-24T15:22:30.485Z",
-      "status": "APPROVED",
-      "id": 1
-    },
-    {
-      "book": {
         "title": "DSA",
-        "author": "NARSIMBHA KARUMANCHI",
-        "description": "DATA STRUCTURES",
+        "author": "NARSIMHA KARUMANCHI",
+        "description": "BEST BOOK FOR JAVA",
         "genre": "OTHER",
         "publicationYear": "2000",
         "isbn": "978-93-560-6066-1",
         "id": 1
       },
       "user": {
-        "phone_no": "1234567891",
-        "name": "ROHIT",
-        "email": "ROHIT@GMAIL.COM",
+        "phone_no": "1234567892",
+        "name": "SANKSAR",
+        "email": "SANKAR@GMAIL.COM",
         "password": null,
-        "id": 1,
-        "bookCount": 0
+        "id": 2
       },
-      "issueDate": "2024-01-14T15:22:33.151Z",
-      "returnDate": "2024-01-24T15:22:33.151Z",
+      "issueDate": "2024-01-16T05:11:39.772Z",
+      "returnDate": "2024-01-26T05:11:39.772Z",
       "status": "APPROVED",
-      "id": 3
+      "id": 4
+    },
+    {
+      "book": {
+        "title": "PHYSICS",
+        "author": "HC VERMA",
+        "description": "FOR LEARNING PHYSICS AND THERMODYNAMICS",
+        "genre": "OTHER",
+        "publicationYear": "1995",
+        "isbn": "978-93-560-6066-8",
+        "id": 5
+      },
+      "user": {
+        "phone_no": "1234567892",
+        "name": "SANKSAR",
+        "email": "SANKAR@GMAIL.COM",
+        "password": null,
+        "id": 2
+      },
+      "issueDate": "2024-01-16T05:11:40.483Z",
+      "returnDate": "2024-01-26T05:11:40.483Z",
+      "status": "APPROVED",
+      "id": 5
+    },
+    {
+      "book": {
+        "title": "ANGULAR",
+        "author": "ROBERT",
+        "description": "FOR LEARNING ANGULAR",
+        "genre": "NOVEL",
+        "publicationYear": "2020",
+        "isbn": "978-93-560-6066-3",
+        "id": 4
+      },
+      "user": {
+        "phone_no": "1234567892",
+        "name": "SANKSAR",
+        "email": "SANKAR@GMAIL.COM",
+        "password": null,
+        "id": 2
+      },
+      "issueDate": "2024-01-16T05:11:41.240Z",
+      "returnDate": "2024-01-26T05:11:41.240Z",
+      "status": "APPROVED",
+      "id": 6
     }
   ]
 }

@@ -42,7 +42,7 @@ export class AddUserComponent implements OnInit{
       this.isSubmittedError = false;
       this.publicUserId = userData.id;
       this.userForm.resetForm();
-      this.route.navigate(['/dashboard', 'users'])
+      this.route.navigate(['/dashboard', 'users'], {queryParams : {userType : 'public'}, queryParamsHandling : 'merge'})
     }, (err) => {
       this.isSubmittedError = true;
     });

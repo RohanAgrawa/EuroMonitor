@@ -7,8 +7,6 @@ export class UserModel{
   private password: string;
   private role: string;
   private id : number;
-  private bookCount: number;
-
   constructor(name : string, phone_no : number, email : string, role? : string, password?:string, id?: number) {
     this.phone_no = phone_no;
     this.name = name.toUpperCase();
@@ -16,7 +14,6 @@ export class UserModel{
     this.password = password;
     this.role = role;
     this.id = id;
-    this.bookCount = 0;
   }
 
   public getName(): string{
@@ -36,13 +33,5 @@ export class UserModel{
   }
   public getId(): number{
     return this.id;
-  }
-
-  public setBookCount(bookCount: number): void{
-    this.bookCount = bookCount;
-  }
-
-  public getBookCount(): number{
-    return this.bookCount;
   }
 }

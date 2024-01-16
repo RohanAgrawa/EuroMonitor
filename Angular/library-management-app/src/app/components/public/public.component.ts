@@ -26,7 +26,12 @@ export class PublicComponent {
 
     this.authService.logIn(this.userForm.value.email, this.userForm.value.password).subscribe((response) => {
       this.userForm.resetForm();
-      this.routes.navigate(['/public-dashboard', 'book-list']);
+      if (response.length > 0) {
+        this.routes.navigate(['/public-dashboard', 'book-list']);
+      }
+      else {
+        this.openDialog();
+      }
     }, (error) => {
       this.openDialog();
     });

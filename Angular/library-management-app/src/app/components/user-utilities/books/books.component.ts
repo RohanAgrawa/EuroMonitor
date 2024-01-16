@@ -28,7 +28,7 @@ export class BooksComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer,private bookService : BookService, private route : ActivatedRoute, private routes : Router, private dialog : MatDialog, private requestBook : RequestBookService) { } 
+  constructor(private _liveAnnouncer: LiveAnnouncer,private bookService : BookService, private route : ActivatedRoute, private dialog : MatDialog, private requestBook : RequestBookService) { } 
 
   public ngOnInit(): void {
     this.getBooks();
@@ -54,7 +54,7 @@ export class BooksComponent {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  public  onBorrow(book: any){
+  public  onBorrow(book: any) : void{
     
     
     const bookModel = new BookModel(book.title, book.author, book.description, book.genre, book.publicationYear, book.isbn, +book.id);
@@ -93,7 +93,7 @@ export class BooksComponent {
     this.dataSource.filter = filteredValue;
   }
 
-  private openDialog() {
+  private openDialog() : void {
     const dialogRef = this.dialog.open(DialogContentComponent);
   }
 

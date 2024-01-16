@@ -64,12 +64,6 @@ export class IssuedBooksComponent implements OnInit{
 
   public onReturnBook(bookTransaction: any): void {
 
-    this.userService.getUser(+bookTransaction.userId).subscribe((response) => {
-      this.userService.updateBookCount(+bookTransaction.userId, (response.bookCount) - 1).subscribe((response) => {
-        console.log(response);
-      });
-    });
-
     this.bookTransactionService.returnBook(bookTransaction.userId, bookTransaction.bookId, bookTransaction.borrowId).subscribe((response) => {
       this.getIssuedBooks();
     }, (error) => { this.openDialog(); });
